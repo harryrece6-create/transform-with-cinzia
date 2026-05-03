@@ -60,7 +60,7 @@ const t = {
     signInLink: "Anmelden",
     signUpLink: "Konto erstellen",
     forgot: "Passwort vergessen?",
-    terms: "Mit „Weiter" akzeptierst du unsere AGB & Datenschutz.",
+    terms: "Mit der Fortsetzung akzeptierst du unsere AGB & Datenschutz.",
     or: "oder",
   },
   sr: {
