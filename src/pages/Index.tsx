@@ -97,9 +97,9 @@ const Index = () => {
           <nav className="hidden md:flex items-center gap-10 font-body text-xs tracking-wide-2 uppercase">
             <a href="#coach" className="hover:text-gold transition-colors">Coach</a>
             <a href="#story" className="hover:text-gold transition-colors">Story</a>
-            <a href="#why" className="hover:text-gold transition-colors">Why Us</a>
-            <a href="#tryout" className="hover:text-gold transition-colors">Try-out</a>
-            <a href="#packs" className="hover:text-gold transition-colors">Packs</a>
+            <a href="#method" className="hover:text-gold transition-colors">Method</a>
+            <a href="#stories" className="hover:text-gold transition-colors">Stories</a>
+            <a href="#journeys" className="hover:text-gold transition-colors">Journeys</a>
           </nav>
           <div className="flex items-center gap-3">
             <div className="relative">
