@@ -111,7 +111,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg p-0 overflow-hidden border-gold/30 bg-background rounded-none [&>button]:hidden">
+      <DialogContent className="max-w-lg p-0 overflow-hidden border-gold/30 bg-background rounded-2xl [&>button]:hidden">
         <DialogTitle className="sr-only">{isRegister ? c.create : c.signIn}</DialogTitle>
         <DialogDescription className="sr-only">{c.tagline}</DialogDescription>
 
@@ -131,7 +131,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
                 <Globe className="h-3 w-3" /> {langLabel[lang]}
               </button>
               {langOpen && (
-                <div className="absolute left-0 top-full mt-1 z-10 bg-background border border-border min-w-[80px] shadow-deep">
+                <div className="absolute left-0 top-full mt-1 z-10 bg-background border border-border min-w-[80px] shadow-soft">
                   {(Object.keys(langLabel) as Lang[]).map((l) => (
                     <button key={l} onClick={() => { onLangChange(l); setLangOpen(false); }}
                       className={`w-full text-left px-3 py-2 font-body text-[10px] tracking-luxe uppercase hover:bg-secondary hover:text-gold transition-colors ${l === lang ? "text-gold" : ""}`}>
@@ -201,7 +201,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input type="text" placeholder={c.firstNamePh}
-                    className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+                    className="pl-10 h-12 rounded-2xl bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
                 </div>
               </div>
             )}
@@ -211,7 +211,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input type="email" placeholder={c.emailPh}
-                  className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+                  className="pl-10 h-12 rounded-2xl bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
               </div>
             </div>
 
@@ -227,7 +227,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input type={showPw ? "text" : "password"} placeholder="••••••••"
-                  className="pl-10 pr-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+                  className="pl-10 pr-10 h-12 rounded-2xl bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
                 <button type="button" onClick={() => setShowPw((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-gold transition-colors">
                   {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -265,7 +265,7 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
             )}
 
             <Button type="submit"
-              className="group w-full h-13 py-4 mt-2 bg-foreground text-background hover:bg-gold hover:text-primary-foreground rounded-none font-body text-xs tracking-luxe uppercase transition-all">
+              className="group w-full h-13 py-4 mt-2 bg-foreground text-background hover:bg-gold hover:text-primary-foreground rounded-2xl font-body text-xs tracking-luxe uppercase transition-all">
               <span>{isRegister ? c.create : c.signIn}</span>
               <ArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Button>
