@@ -122,7 +122,9 @@ const Index = () => {
       {/* HERO */}
       <section id="coach" className="relative min-h-screen pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary" />
+          <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream to-sand" />
+          <div className="absolute -left-32 top-40 h-96 w-96 blob bg-gold/15 animate-float" />
+          <div className="absolute right-10 bottom-20 h-72 w-72 blob bg-clay/30 animate-float" style={{ animationDelay: '2s' }} />
           <div className="absolute right-0 top-0 w-1/2 h-full opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(42_52%_52%/0.4),transparent_60%)]" />
           </div>
