@@ -238,133 +238,164 @@ const Index = () => {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section id="why" className="py-32 bg-secondary/30 relative overflow-hidden">
+      {/* THE METHOD */}
+      <section id="method" className="py-32 relative overflow-hidden">
+        <div className="absolute -right-32 top-20 h-80 w-80 blob bg-clay/30 -z-10" />
+        <div className="absolute -left-20 bottom-10 h-72 w-72 blob bg-gold/10 -z-10" />
         <div className="container mx-auto">
-          <div className="text-center mb-20">
-            <SectionLabel>Why Choose Us</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
+          <div className="grid lg:grid-cols-12 gap-12 mb-20 items-end">
+            <div className="lg:col-span-7">
+              <SectionLabel>The Method</SectionLabel>
+              <h2 className="font-display text-5xl md:text-7xl leading-[0.95]">
+                A way of training <br />
+                that <em className="font-normal gold-text">feels like care.</em>
+              </h2>
+            </div>
+            <div className="lg:col-span-5">
+              <p className="font-body text-muted-foreground leading-relaxed">
+                Four quiet pillars I return to with every client. Not a diet, not a bootcamp —
+                a sustainable practice you can actually build a life around.
+              </p>
+              <p className="font-script text-2xl text-gold mt-4">— Dalila</p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f, i) => (
-              <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-2xl relative">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
-                <div className="font-display text-5xl gold-text/30 mb-6 opacity-30">0{i + 1}</div>
-                <f.icon className="h-7 w-7 text-gold mb-6" strokeWidth={1.2} />
-                <h3 className="font-display text-2xl mb-3">{f.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {pillars.map((p, i) => (
+              <Card key={p.title}
+                className={`group relative p-10 rounded-[2rem] border-border bg-card hover:bg-sand transition-all duration-500 overflow-hidden
+                  ${i % 2 === 1 ? "md:translate-y-12" : ""}`}>
+                <div className="flex items-start gap-6">
+                  <div className="shrink-0 h-16 w-16 rounded-full bg-gold/15 flex items-center justify-center group-hover:bg-gold/30 transition-colors">
+                    <p.icon className="h-7 w-7 text-gold" strokeWidth={1.4} />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="font-display italic text-gold text-lg">{p.num}</span>
+                      <span className="h-px flex-1 bg-border" />
+                    </div>
+                    <h3 className="font-display text-3xl mb-3">{p.title}</h3>
+                    <p className="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                  </div>
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TRY-OUT */}
-      <section id="tryout" className="py-32 relative">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.08),transparent_70%)]" />
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <SectionLabel>Free 3-Day Try-Out</SectionLabel>
+      {/* TRANSFORMATIONS */}
+      <section id="stories" className="py-32 bg-sand relative overflow-hidden">
+        <div className="container mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <SectionLabel>Real Transformations</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl mb-6">
-              Discover our <br /><em className="font-normal">21 Days Challenge</em>
+              The women <em className="font-normal gold-text">who chose themselves.</em>
             </h2>
-            <p className="font-body text-muted-foreground leading-relaxed mb-10 max-w-lg">
-              Follow along for 3 free days via Telegram and see exactly how our challenge works
-              while getting to know us and the coaching vibe.
+            <p className="font-body text-muted-foreground">
+              No before-and-after pressure. Just honest stories from clients who showed up,
+              kept showing up, and quietly became someone new.
             </p>
-
-            <div className="space-y-5">
-              {[
-                "Daily Telegram updates so you can follow the rhythm of the challenge.",
-                "A first look at our structure, support, and community energy.",
-                "A low-threshold way to feel if this is the right start for you.",
-              ].map((t, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="shrink-0 mt-1 h-5 w-5 border border-gold flex items-center justify-center">
-                    <Check className="h-3 w-3 text-gold" strokeWidth={3} />
-                  </div>
-                  <p className="font-body text-sm text-foreground/80 leading-relaxed">{t}</p>
-                </div>
-              ))}
-            </div>
-
-            <Button size="lg" className="mt-12 bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
-              Try the 3-Day Free Pass
-            </Button>
           </div>
 
-          <Card className="bg-secondary/60 border-gold/30 rounded-2xl p-10 shadow-soft relative">
-            <div className="absolute top-0 right-0 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">I'm Interested</div>
-            <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">21 Days Challenge Try-out</div>
-            <h3 className="font-display text-3xl mb-2">Follow 3 free days <br /><em className="font-normal">with us on Telegram.</em></h3>
-            <div className="gold-divider my-8" />
-            <ul className="space-y-4 mb-8">
-              {[
-                "3 days of Telegram access",
-                "Behind-the-scenes look at the challenge flow",
-                "Direct feel for our coaching and community",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-3 font-body text-sm">
-                  <span className="h-1 w-1 rounded-full bg-gold" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <p className="font-script text-xl text-gold">Discipline today. Results tomorrow.</p>
-          </Card>
+          <div className="grid md:grid-cols-3 gap-8">
+            {stories.map((s, i) => (
+              <Card key={s.name}
+                className={`relative p-0 rounded-[2rem] overflow-hidden bg-cream border-border hover:shadow-soft transition-all duration-500
+                  ${i === 1 ? "md:-translate-y-6" : ""}`}>
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img src={s.img} alt={`${s.name} transformation`} loading="lazy" width={900} height={1125}
+                    className="w-full h-full object-cover" />
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-cream/90 backdrop-blur rounded-full font-body text-[10px] tracking-luxe uppercase text-gold">
+                    {s.weeks}
+                  </div>
+                </div>
+                <div className="p-8">
+                  <Quote className="h-6 w-6 text-gold mb-4" strokeWidth={1.5} />
+                  <p className="font-display text-xl italic leading-snug mb-6">"{s.quote}"</p>
+                  <div className="gold-divider mb-4" />
+                  <p className="font-body text-xs text-muted-foreground mb-2">{s.result}</p>
+                  <p className="font-script text-2xl text-gold">{s.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-20 grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
+            {[
+              { n: "200+", l: "Women Coached" },
+              { n: "94%", l: "Finish their journey" },
+              { n: "12 wk", l: "Avg. lasting change" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="font-display text-5xl gold-text mb-2">{s.n}</div>
+                <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">{s.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* PACKS */}
-      <section id="packs" className="py-32 bg-secondary/30">
+      {/* JOURNEYS */}
+      <section id="journeys" className="py-32 relative overflow-hidden">
+        <div className="absolute -left-20 top-40 h-72 w-72 blob bg-gold/10 -z-10" />
         <div className="container mx-auto">
-          <div className="text-center mb-20">
-            <SectionLabel>Available Packages</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl">Choose <em className="font-normal gold-text">Your Pack</em></h2>
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <SectionLabel>Choose Your Journey</SectionLabel>
+            <h2 className="font-display text-5xl md:text-6xl mb-6">
+              Three paths. <em className="font-normal gold-text">One you.</em>
+            </h2>
+            <p className="font-body text-muted-foreground">
+              Whether you need a soft beginning, a deep transformation, or just a glow back —
+              there is a way in that fits where you are right now.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packs.map((p) => (
-              <Card key={p.name} className={`relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40"} transition-all duration-500`}>
-                {p.popular && (
-                  <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
-                )}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={p.image} alt={p.name} loading="lazy" width={900} height={700}
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            {journeys.map((j) => (
+              <Card key={j.name}
+                className={`relative rounded-[2rem] overflow-hidden flex flex-col group transition-all duration-500
+                  ${j.popular
+                    ? "bg-ink text-cream border-gold shadow-gold lg:-translate-y-6"
+                    : "bg-card border-border hover:shadow-soft"}`}>
+                <div className="relative aspect-[5/3] overflow-hidden">
+                  <img src={j.image} alt={j.name} loading="lazy" width={900} height={540}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-background/80 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</div>
+                  <div className={`absolute inset-0 ${j.popular ? "bg-gradient-to-t from-ink/80 to-transparent" : "bg-gradient-to-t from-cream/40 to-transparent"}`} />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 bg-cream/90 backdrop-blur rounded-full">
+                    <j.icon className="h-3.5 w-3.5 text-gold" strokeWidth={1.8} />
+                    <span className="font-body text-[10px] tracking-luxe uppercase text-ink">{j.tone}</span>
+                  </div>
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
-                  <h3 className="font-display text-2xl mb-2">{p.name}</h3>
-                  <p className="font-body text-sm text-muted-foreground italic mb-6">{p.tagline}</p>
-
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="font-display text-4xl gold-text">{p.price}</span>
-                    <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">*</span>
+                  <div className="flex items-baseline justify-between mb-1">
+                    <span className={`font-body text-[10px] tracking-luxe uppercase ${j.popular ? "text-cream/60" : "text-muted-foreground"}`}>
+                      {j.duration}
+                    </span>
+                    <span className="font-display text-3xl gold-text">{j.price}</span>
                   </div>
+                  <h3 className="font-display text-3xl mb-3">{j.name}</h3>
+                  <p className={`font-body text-sm leading-relaxed mb-6 ${j.popular ? "text-cream/70" : "text-muted-foreground"}`}>
+                    {j.desc}
+                  </p>
 
-                  <p className="font-body text-sm text-foreground/70 leading-relaxed mb-6">{p.desc}</p>
+                  <div className={`h-px mb-6 ${j.popular ? "bg-cream/15" : "bg-border"}`} />
 
-                  <div className="gold-divider mb-6" />
-
-                  <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">Perfect For</div>
-                  <p className="font-body text-sm text-foreground/80 mb-6">{p.perfect}</p>
-
-                  <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">What's Included</div>
-                  <ul className="space-y-2 mb-8">
-                    {p.items.map((it) => (
-                      <li key={it} className="flex gap-3 font-body text-sm text-foreground/80">
-                        <Check className="h-4 w-4 text-gold shrink-0 mt-0.5" strokeWidth={2} />
+                  <ul className="space-y-3 mb-8">
+                    {j.items.map((it) => (
+                      <li key={it} className={`flex gap-3 font-body text-sm ${j.popular ? "text-cream/85" : "text-foreground/80"}`}>
+                        <Check className="h-4 w-4 text-gold shrink-0 mt-0.5" strokeWidth={2.2} />
                         {it}
                       </li>
                     ))}
                   </ul>
 
-                  <Button className={`mt-auto rounded-2xl font-body text-xs tracking-luxe uppercase h-12 ${p.popular ? "bg-gold text-primary-foreground hover:bg-gold/90" : "bg-foreground text-background hover:bg-gold hover:text-primary-foreground"}`}>
-                    Get In Touch
+                  <Button className={`mt-auto rounded-full font-body text-xs tracking-luxe uppercase h-12
+                    ${j.popular
+                      ? "bg-gold text-primary-foreground hover:bg-gold/90"
+                      : "bg-ink text-cream hover:bg-gold hover:text-primary-foreground"}`}>
+                    Begin {j.name} <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
                   </Button>
                 </div>
               </Card>
@@ -372,7 +403,7 @@ const Index = () => {
           </div>
 
           <p className="text-center font-body text-xs text-muted-foreground mt-10 italic">
-            * These are the prices in Belgium. Prices may differ in other countries.
+            * Prices shown for Belgium. Slight variations may apply in other countries.
           </p>
         </div>
       </section>
