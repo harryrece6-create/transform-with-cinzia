@@ -379,11 +379,11 @@ const Index = () => {
             that you've been waiting for.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Create Account
             </Button>
-            <Button size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
-              Free 3-Day Try-out
+            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
+              Sign In
             </Button>
           </div>
         </div>
