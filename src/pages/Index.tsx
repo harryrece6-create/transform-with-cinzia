@@ -98,7 +98,7 @@ const Index = () => {
                 <Globe className="h-3 w-3" /> {langLabel[lang]}
               </button>
               {langOpen && (
-                <div className="absolute right-0 top-full mt-1 z-50 bg-background border border-border min-w-[80px] shadow-deep">
+                <div className="absolute right-0 top-full mt-1 z-50 bg-background border border-border min-w-[80px] shadow-soft">
                   {(Object.keys(langLabel) as Lang[]).map((l) => (
                     <button key={l} onClick={() => { setLang(l); setLangOpen(false); }}
                       className={`w-full text-left px-3 py-2 font-body text-[10px] tracking-luxe uppercase hover:bg-secondary hover:text-gold transition-colors ${l === lang ? "text-gold" : ""}`}>
@@ -108,10 +108,10 @@ const Index = () => {
                 </div>
               )}
             </div>
-            <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-[10px] tracking-luxe uppercase bg-transparent">
+            <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-[10px] tracking-luxe uppercase bg-transparent">
               Sign In
             </Button>
-            <Button size="sm" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-[10px] tracking-luxe uppercase">
+            <Button size="sm" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-[10px] tracking-luxe uppercase">
               Create Account
             </Button>
             <Menu className="md:hidden h-5 w-5 text-foreground/70" />
@@ -122,7 +122,9 @@ const Index = () => {
       {/* HERO */}
       <section id="coach" className="relative min-h-screen pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary" />
+          <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream to-sand" />
+          <div className="absolute -left-32 top-40 h-96 w-96 blob bg-gold/15 animate-float" />
+          <div className="absolute right-10 bottom-20 h-72 w-72 blob bg-clay/30 animate-float" style={{ animationDelay: '2s' }} />
           <div className="absolute right-0 top-0 w-1/2 h-full opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(42_52%_52%/0.4),transparent_60%)]" />
           </div>
@@ -141,10 +143,10 @@ const Index = () => {
               Your transformation starts with a single decision.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
+              <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
                 <a href="#tryout">Free 3-Day Try-out</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
+              <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
                 <a href="#packs">Choose Your Pack <ArrowRight className="ml-2 h-3 w-3" /></a>
               </Button>
             </div>
@@ -175,7 +177,7 @@ const Index = () => {
                 alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
-                className="relative w-full h-full object-cover shadow-deep"
+                className="relative w-full h-full object-cover shadow-soft"
               />
               <div className="absolute -bottom-6 -left-6 bg-background border border-gold/40 px-6 py-4">
                 <div className="font-script text-xl text-gold leading-none">Prove yourself</div>
@@ -234,7 +236,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
-              <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-none relative">
+              <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-2xl relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
                 <div className="font-display text-5xl gold-text/30 mb-6 opacity-30">0{i + 1}</div>
                 <f.icon className="h-7 w-7 text-gold mb-6" strokeWidth={1.2} />
@@ -275,12 +277,12 @@ const Index = () => {
               ))}
             </div>
 
-            <Button size="lg" className="mt-12 bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" className="mt-12 bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Try the 3-Day Free Pass
             </Button>
           </div>
 
-          <Card className="bg-secondary/60 border-gold/30 rounded-none p-10 shadow-deep relative">
+          <Card className="bg-secondary/60 border-gold/30 rounded-2xl p-10 shadow-soft relative">
             <div className="absolute top-0 right-0 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">I'm Interested</div>
             <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">21 Days Challenge Try-out</div>
             <h3 className="font-display text-3xl mb-2">Follow 3 free days <br /><em className="font-normal">with us on Telegram.</em></h3>
@@ -312,7 +314,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {packs.map((p) => (
-              <Card key={p.name} className={`relative bg-background border rounded-none overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40"} transition-all duration-500`}>
+              <Card key={p.name} className={`relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40"} transition-all duration-500`}>
                 {p.popular && (
                   <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
                 )}
@@ -349,7 +351,7 @@ const Index = () => {
                     ))}
                   </ul>
 
-                  <Button className={`mt-auto rounded-none font-body text-xs tracking-luxe uppercase h-12 ${p.popular ? "bg-gold text-primary-foreground hover:bg-gold/90" : "bg-foreground text-background hover:bg-gold hover:text-primary-foreground"}`}>
+                  <Button className={`mt-auto rounded-2xl font-body text-xs tracking-luxe uppercase h-12 ${p.popular ? "bg-gold text-primary-foreground hover:bg-gold/90" : "bg-foreground text-background hover:bg-gold hover:text-primary-foreground"}`}>
                     Get In Touch
                   </Button>
                 </div>
@@ -379,10 +381,10 @@ const Index = () => {
             that you've been waiting for.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Create Account
             </Button>
-            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
+            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
               Sign In
             </Button>
           </div>
