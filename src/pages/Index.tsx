@@ -156,10 +156,10 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
-                <a href="#tryout">Free 3-Day Try-out</a>
+                <a href="#journeys">Find Your Journey</a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
-                <a href="#packs">Choose Your Pack <ArrowRight className="ml-2 h-3 w-3" /></a>
+                <a href="#method">My Method <ArrowUpRight className="ml-2 h-3 w-3" /></a>
               </Button>
             </div>
             <div className="mt-16 flex items-center gap-8">
