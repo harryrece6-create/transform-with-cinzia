@@ -8,9 +8,10 @@ import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 
 const Monogram = ({ className = "" }: { className?: string }) => (
-  <span className={`font-display font-bold ${className}`}>
-    <span className="gold-text">M</span>
-    <span className="text-foreground/80">H</span>
+  <span className={`font-display font-bold inline-flex items-center ${className}`}>
+    <span className="gold-text">D</span>
+    <span className="mx-0.5 text-foreground/40 italic font-light">/</span>
+    <span className="text-foreground italic">B</span>
   </span>
 );
 
@@ -68,7 +69,7 @@ const Index = () => {
         <div className="container mx-auto flex items-center justify-between py-4">
           <a href="#" className="flex items-center gap-3">
             <Monogram className="text-2xl" />
-            <span className="hidden sm:block font-body text-[10px] tracking-luxe uppercase text-muted-foreground">MAKEITHAPPEN</span>
+            <span className="hidden sm:block font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Dalila Bahtijarevic · FitLife Coach</span>
           </a>
           <nav className="hidden md:flex items-center gap-10 font-body text-xs tracking-wide-2 uppercase">
             <a href="#coach" className="hover:text-gold transition-colors">Coach</a>
@@ -100,10 +101,10 @@ const Index = () => {
           <div className="lg:col-span-6 animate-fade-up">
             <SectionLabel>Meet Your Coach</SectionLabel>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-8">
-              Transform <br />
-              <span className="italic font-normal">with</span> <span className="gold-text">Cinzia</span>
+              Prove <br />
+              <span className="italic font-normal">Yourself</span> <span className="gold-text">Right.</span>
             </h1>
-            <div className="font-script text-3xl text-gold mb-8">— Cinzia</div>
+            <div className="font-script text-3xl text-gold mb-8">Dalila Bahtijarevic</div>
             <p className="font-body text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed">
               Join a community dedicated to growth, discipline, and results.
               Your transformation starts with a single decision.
@@ -140,7 +141,7 @@ const Index = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 to-transparent" />
               <img
                 src={heroImg}
-                alt="Cinzia, FitLife coach training in the gym"
+                alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
                 className="relative w-full h-full object-cover shadow-deep"
@@ -362,10 +363,10 @@ const Index = () => {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Monogram className="text-xl" />
-            <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">MAKEITHAPPEN · FitLife Coach</span>
+            <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Dalila Bahtijarevic · FitLife Coach</span>
           </div>
           <p className="font-script text-lg text-gold">Prove yourself right.</p>
-          <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Cinzia</p>
+          <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Dalila Bahtijarevic</p>
         </div>
       </footer>
     </div>
