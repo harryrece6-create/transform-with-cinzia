@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe } from "lucide-react";
+import { Check, Play, Menu, Globe, Quote, Leaf, Compass, Flame, Moon, Star, ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning from "@/assets/pack-morning.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
+import test1 from "@/assets/testimonial-1.jpg";
+import test2 from "@/assets/testimonial-2.jpg";
+import test3 from "@/assets/testimonial-3.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
 
 type Lang = "en" | "de" | "sr";
@@ -27,41 +30,50 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const features = [
-  { icon: Trophy, title: "Proven Results", desc: "Real transformations from real clients who showed up and did the work." },
-  { icon: Users, title: "Community Driven", desc: "Surround yourself with people who push you higher every single day." },
-  { icon: Heart, title: "Personalized Support", desc: "Certified coaching that adapts to your body, your pace, your life." },
-  { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
+const pillars = [
+  { icon: Compass, num: "01", title: "Mindset First", desc: "We start with how you think, because every body change begins in the mind. Clarity, calm, and a quiet kind of confidence." },
+  { icon: Flame, num: "02", title: "Move with Purpose", desc: "Workouts shaped around your real life. Strong, simple, repeatable — never punishment, always progress." },
+  { icon: Leaf, num: "03", title: "Nourish Gently", desc: "Food that fuels your day instead of ruling it. Honest nutrition, easy rituals, no extreme rules." },
+  { icon: Moon, num: "04", title: "Recover & Rise", desc: "Rest is part of the work. Sleep, breath, and soft routines that let your body actually transform." },
 ];
 
-const packs = [
+const stories = [
+  { name: "Lara M.", weeks: "12 Weeks", img: test1, quote: "I came for the body. I stayed because I finally feel like myself again.", result: "Calmer mornings · Sleeping through the night" },
+  { name: "Mira K.", weeks: "8 Weeks",  img: test2, quote: "Dalila gave me a rhythm I can actually live with. Nothing felt like a diet.", result: "Daily practice · More energy · Real food peace" },
+  { name: "Sara V.", weeks: "16 Weeks", img: test3, quote: "It's the first program I didn't quit. The community kept me showing up.", result: "Stronger body · Quieter mind · Habits that last" },
+];
+
+const journeys = [
   {
-    name: "Morning Kickstart Pack",
-    tagline: "Your clean, easy morning reset starts here.",
-    price: "€65.75",
+    name: "The Reset",
+    duration: "21 Days",
+    icon: Leaf,
+    price: "€65",
+    tone: "Begin softly",
     image: packMorning,
-    desc: "A strong day starts with a strong morning. This pack puts the focus on breakfast with Formula 1 so you feel more in control, more consistent, and ready to go.",
-    perfect: "Busy people who want a simple healthy routine that is easy to stick to.",
-    items: ["Formula 1 breakfast support", "A simple, healthy start to your day", "More structure and consistency"],
+    desc: "A gentle 3-week return to yourself. Mornings, meals, and movement, rebuilt without overwhelm.",
+    items: ["Daily morning ritual", "Light guided workouts", "Nutrition foundations", "Telegram check-ins"],
   },
   {
-    name: "Total Results Pack",
-    tagline: "Your all-in combo for stronger results, faster.",
-    price: "€156.80",
+    name: "The Transformation",
+    duration: "12 Weeks",
+    icon: Star,
+    price: "€156",
+    tone: "Most chosen",
     image: packTotal,
-    desc: "The perfect breakfast and hydration combo for people who want to go all-in. Formula 1, the herbal drink and aloe vera work together to support your metabolism and your results from day one.",
-    perfect: "People who want the most complete start and the biggest push toward results.",
-    items: ["Formula 1 breakfast", "Herbal drink for energy & focus", "Aloe vera for hydration & digestion"],
     popular: true,
+    desc: "The full coaching journey. Personalized plan, real results, and a community that walks with you.",
+    items: ["1:1 onboarding call", "Personal training plan", "Nutrition & supplement guide", "Weekly coach review", "Private community access"],
   },
   {
-    name: "Hydration Boost Pack",
-    tagline: "Hydrate better, feel lighter, boost your daily flow.",
-    price: "€95.90",
+    name: "The Glow",
+    duration: "6 Weeks",
+    icon: Flame,
+    price: "€95",
+    tone: "Energy reset",
     image: packHydration,
-    desc: "Feel sharper and more energized throughout the day. Herbal drink in lemon, peach or raspberry plus aloe vera mango — hydration, detox, energy, fat burning and gut balance in one routine.",
-    perfect: "Anyone who wants more energy, better hydration and visible momentum.",
-    items: ["Herbal drink (lemon, peach, raspberry)", "Aloe vera mango for hydration", "Detox, energy, and gut balance"],
+    desc: "Lighter days, brighter skin, calmer gut. A focused boost for energy, hydration and inner balance.",
+    items: ["Hydration & herbal protocol", "Gentle daily movement", "Skin & sleep rituals", "Group accountability"],
   },
 ];
 
