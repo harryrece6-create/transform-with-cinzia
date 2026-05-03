@@ -3,7 +3,8 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock, Eye, EyeOff, ArrowLeft, Globe, User, Sparkles, Check } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, X, Globe, User, Check, ArrowRight } from "lucide-react";
+import heroImg from "@/assets/hero-coach.jpg";
 
 type Lang = "en" | "de" | "sr";
 type Role = "client" | "coach";
@@ -12,66 +13,81 @@ type Mode = "register" | "login";
 const t = {
   en: {
     welcome: "Welcome",
-    tagline: "Redefine your limits",
-    email: "Email address",
-    emailPh: "name@example.com",
+    tagline: "Your transformation begins here",
+    subline: "One decision. One discipline. One you.",
+    email: "Email",
+    emailPh: "you@example.com",
     password: "Password",
-    firstName: "First name",
-    firstNamePh: "Your first name",
-    joinAs: "I am joining as a…",
+    firstName: "Your name",
+    firstNamePh: "What should we call you?",
+    joinAs: "Joining as",
     client: "Client",
+    clientDesc: "Train with Dalila",
     coach: "Coach",
-    create: "Create Account",
-    signIn: "Sign In",
-    hasAccount: "Already have an account?",
-    noAccount: "New here?",
+    coachDesc: "Lead a community",
+    create: "Begin My Journey",
+    signIn: "Continue",
+    signInTitle: "Welcome Back",
+    signInSub: "Pick up right where you left off.",
+    hasAccount: "Already with us?",
+    noAccount: "First time here?",
     signInLink: "Sign in",
-    signUpLink: "Create one",
-    back: "Back",
-    terms: "By creating an account, you agree to our Terms & Privacy.",
-    bullets: ["Personal coaching", "Daily structure", "Real community"],
+    signUpLink: "Create an account",
+    forgot: "Forgot password?",
+    terms: "By continuing you accept our Terms & Privacy.",
+    or: "or",
   },
   de: {
     welcome: "Willkommen",
-    tagline: "Definiere deine Grenzen neu",
-    email: "E-Mail-Adresse",
-    emailPh: "name@beispiel.com",
+    tagline: "Hier beginnt deine Transformation",
+    subline: "Eine Entscheidung. Eine Disziplin. Ein Du.",
+    email: "E-Mail",
+    emailPh: "du@beispiel.com",
     password: "Passwort",
-    firstName: "Vorname",
-    firstNamePh: "Dein Vorname",
-    joinAs: "Ich registriere mich als…",
-    client: "Kunde",
+    firstName: "Dein Name",
+    firstNamePh: "Wie sollen wir dich nennen?",
+    joinAs: "Ich starte als",
+    client: "Kundin",
+    clientDesc: "Trainiere mit Dalila",
     coach: "Coach",
-    create: "Konto erstellen",
-    signIn: "Anmelden",
-    hasAccount: "Bereits ein Konto?",
-    noAccount: "Neu hier?",
+    coachDesc: "Führe eine Community",
+    create: "Reise beginnen",
+    signIn: "Weiter",
+    signInTitle: "Willkommen zurück",
+    signInSub: "Mach genau dort weiter, wo du aufgehört hast.",
+    hasAccount: "Schon dabei?",
+    noAccount: "Zum ersten Mal hier?",
     signInLink: "Anmelden",
     signUpLink: "Konto erstellen",
-    back: "Zurück",
-    terms: "Mit der Erstellung deines Kontos akzeptierst du unsere AGB & Datenschutz.",
-    bullets: ["Persönliches Coaching", "Tägliche Struktur", "Echte Community"],
+    forgot: "Passwort vergessen?",
+    terms: "Mit „Weiter" akzeptierst du unsere AGB & Datenschutz.",
+    or: "oder",
   },
   sr: {
-    welcome: "Dobrodošli",
-    tagline: "Pomeri svoje granice",
-    email: "Email adresa",
-    emailPh: "ime@primer.com",
+    welcome: "Dobrodošla",
+    tagline: "Tvoja transformacija počinje ovde",
+    subline: "Jedna odluka. Jedna disciplina. Jedna ti.",
+    email: "Email",
+    emailPh: "ti@primer.com",
     password: "Lozinka",
-    firstName: "Ime",
-    firstNamePh: "Tvoje ime",
-    joinAs: "Pridružujem se kao…",
+    firstName: "Tvoje ime",
+    firstNamePh: "Kako da te zovemo?",
+    joinAs: "Pridružujem se kao",
     client: "Klijent",
+    clientDesc: "Treniraj sa Dalilom",
     coach: "Trener",
-    create: "Kreiraj nalog",
-    signIn: "Prijavi se",
+    coachDesc: "Vodi zajednicu",
+    create: "Započni put",
+    signIn: "Nastavi",
+    signInTitle: "Dobrodošla nazad",
+    signInSub: "Nastavi tačno tamo gde si stala.",
     hasAccount: "Već imaš nalog?",
-    noAccount: "Novi si ovde?",
+    noAccount: "Prvi put ovde?",
     signInLink: "Prijavi se",
     signUpLink: "Napravi nalog",
-    back: "Nazad",
-    terms: "Kreiranjem naloga prihvataš naše Uslove i Politiku privatnosti.",
-    bullets: ["Lično vođenje", "Dnevna struktura", "Prava zajednica"],
+    forgot: "Zaboravljena lozinka?",
+    terms: "Nastavkom prihvataš naše Uslove i Privatnost.",
+    or: "ili",
   },
 };
 
@@ -91,202 +107,175 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
   const [showPw, setShowPw] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const c = t[lang];
-
   const isRegister = mode === "register";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden border-gold/40 bg-background rounded-none [&>button]:hidden">
+      <DialogContent className="max-w-lg p-0 overflow-hidden border-gold/30 bg-background rounded-none [&>button]:hidden">
         <DialogTitle className="sr-only">{isRegister ? c.create : c.signIn}</DialogTitle>
         <DialogDescription className="sr-only">{c.tagline}</DialogDescription>
 
-        <div className="grid md:grid-cols-2 min-h-[640px]">
-          {/* LEFT — Brand panel */}
-          <div className="relative hidden md:flex flex-col justify-between p-10 bg-gradient-to-br from-secondary via-background to-secondary border-r border-gold/20 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,hsl(42_52%_52%/0.18),transparent_60%)]" />
-            <div className="absolute -top-20 -right-20 h-80 w-80 border border-gold/20 rotate-12" />
+        {/* Header banner */}
+        <div className="relative h-40 overflow-hidden border-b border-gold/30">
+          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.25),transparent_70%)]" />
 
+          {/* Top controls */}
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
             <div className="relative">
-              <div className="font-display font-bold text-5xl inline-flex items-center">
-                <span className="gold-text">D</span>
-                <span className="mx-1 text-foreground/40 italic font-light">/</span>
-                <span className="text-foreground italic">B</span>
-              </div>
-              <p className="mt-3 font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
-                Dalila Bahtijarevic · FitLife Coach
-              </p>
+              <button
+                onClick={() => setLangOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-background/60 backdrop-blur border border-border hover:border-gold/60 font-body text-[10px] tracking-luxe uppercase transition-colors"
+              >
+                <Globe className="h-3 w-3" /> {langLabel[lang]}
+              </button>
+              {langOpen && (
+                <div className="absolute left-0 top-full mt-1 z-10 bg-background border border-border min-w-[80px] shadow-deep">
+                  {(Object.keys(langLabel) as Lang[]).map((l) => (
+                    <button key={l} onClick={() => { onLangChange(l); setLangOpen(false); }}
+                      className={`w-full text-left px-3 py-2 font-body text-[10px] tracking-luxe uppercase hover:bg-secondary hover:text-gold transition-colors ${l === lang ? "text-gold" : ""}`}>
+                      {langLabel[l]}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-
-            <div className="relative space-y-6">
-              <div className="h-px w-12 bg-gold" />
-              <h3 className="font-display text-4xl leading-tight">
-                Prove <em className="font-normal">yourself</em> <span className="gold-text">right.</span>
-              </h3>
-              <p className="font-script text-2xl text-gold">{c.tagline}</p>
-              <ul className="space-y-3 pt-2">
-                {c.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-3 font-body text-sm text-foreground/80">
-                    <Check className="h-4 w-4 text-gold" strokeWidth={2.5} />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="relative font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
-              Strong Body · Strong Mind · <span className="text-gold">Better Life</span>
-            </div>
+            <button
+              onClick={() => onOpenChange(false)}
+              className="h-8 w-8 inline-flex items-center justify-center bg-background/60 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
 
-          {/* RIGHT — Form */}
-          <div className="relative p-8 md:p-10 flex flex-col">
-            {/* Top bar */}
-            <div className="flex items-center justify-between mb-8">
-              <button
-                onClick={() => onOpenChange(false)}
-                className="inline-flex items-center gap-2 font-body text-[10px] tracking-luxe uppercase text-muted-foreground hover:text-gold transition-colors"
-              >
-                <ArrowLeft className="h-3 w-3" />
-                {c.back}
-              </button>
+          {/* Brand center */}
+          <div className="absolute inset-x-0 bottom-4 text-center">
+            <div className="font-display font-bold text-3xl inline-flex items-center">
+              <span className="gold-text">D</span>
+              <span className="mx-0.5 text-foreground/40 italic font-light">/</span>
+              <span className="text-foreground italic">B</span>
+            </div>
+            <p className="font-script text-base text-gold mt-0.5">Prove yourself right.</p>
+          </div>
+        </div>
 
+        {/* Body */}
+        <div className="p-8 md:p-10">
+          {/* Mode tabs */}
+          <div className="flex border border-border mb-8">
+            <button
+              onClick={() => setMode("register")}
+              className={`flex-1 py-2.5 font-body text-[10px] tracking-luxe uppercase transition-colors ${
+                isRegister ? "bg-gold text-primary-foreground" : "text-muted-foreground hover:text-gold"
+              }`}
+            >
+              {c.signUpLink}
+            </button>
+            <button
+              onClick={() => setMode("login")}
+              className={`flex-1 py-2.5 font-body text-[10px] tracking-luxe uppercase transition-colors ${
+                !isRegister ? "bg-gold text-primary-foreground" : "text-muted-foreground hover:text-gold"
+              }`}
+            >
+              {c.signInLink}
+            </button>
+          </div>
+
+          {/* Title */}
+          <div className="mb-7">
+            <h2 className="font-display text-3xl">
+              {isRegister ? c.welcome : c.signInTitle}<span className="gold-text">.</span>
+            </h2>
+            <p className="font-body text-sm text-muted-foreground mt-1.5">
+              {isRegister ? c.tagline : c.signInSub}
+            </p>
+            {isRegister && <p className="font-script text-lg text-gold mt-2">{c.subline}</p>}
+          </div>
+
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            {isRegister && (
+              <div className="space-y-1.5">
+                <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.firstName}</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input type="text" placeholder={c.firstNamePh}
+                    className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-1.5">
+              <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.email}</Label>
               <div className="relative">
-                <button
-                  onClick={() => setLangOpen((v) => !v)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 border border-border hover:border-gold/60 font-body text-[10px] tracking-luxe uppercase transition-colors"
-                >
-                  <Globe className="h-3 w-3" />
-                  {langLabel[lang]}
-                </button>
-                {langOpen && (
-                  <div className="absolute right-0 top-full mt-1 z-10 bg-background border border-border min-w-[80px] shadow-deep">
-                    {(Object.keys(langLabel) as Lang[]).map((l) => (
-                      <button
-                        key={l}
-                        onClick={() => { onLangChange(l); setLangOpen(false); }}
-                        className={`w-full text-left px-3 py-2 font-body text-[10px] tracking-luxe uppercase hover:bg-secondary hover:text-gold transition-colors ${l === lang ? "text-gold" : ""}`}
-                      >
-                        {langLabel[l]}
-                      </button>
-                    ))}
-                  </div>
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input type="email" placeholder={c.emailPh}
+                  className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.password}</Label>
+                {!isRegister && (
+                  <button type="button" className="font-body text-[10px] tracking-wide text-gold hover:underline underline-offset-4">
+                    {c.forgot}
+                  </button>
                 )}
               </div>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input type={showPw ? "text" : "password"} placeholder="••••••••"
+                  className="pl-10 pr-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body" />
+                <button type="button" onClick={() => setShowPw((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-gold transition-colors">
+                  {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
             </div>
 
-            {/* Header */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-3 mb-3">
-                <span className="h-px w-6 bg-gold" />
-                <span className="font-body text-[10px] tracking-luxe uppercase text-gold">
-                  {isRegister ? c.create : c.signIn}
-                </span>
-              </div>
-              <h2 className="font-display text-4xl">
-                {c.welcome}<span className="gold-text">.</span>
-              </h2>
-              <p className="font-body text-sm text-muted-foreground mt-2">{c.tagline}</p>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-6 flex-1">
-              {isRegister && (
-                <div className="space-y-2">
-                  <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.firstName}</Label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder={c.firstNamePh}
-                      className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.email}</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="email"
-                    placeholder={c.emailPh}
-                    className="pl-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body"
-                  />
+            {isRegister && (
+              <div className="space-y-2 pt-1">
+                <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.joinAs}</Label>
+                <div className="grid grid-cols-2 gap-3">
+                  {([
+                    { id: "client" as Role, label: c.client, desc: c.clientDesc },
+                    { id: "coach" as Role, label: c.coach, desc: c.coachDesc },
+                  ]).map((r) => (
+                    <button key={r.id} type="button" onClick={() => setRole(r.id)}
+                      className={`relative p-4 text-left border transition-all ${
+                        role === r.id
+                          ? "border-gold bg-gold/10"
+                          : "border-border hover:border-gold/40 bg-secondary/20"
+                      }`}>
+                      <div className={`font-display text-base ${role === r.id ? "text-gold" : "text-foreground"}`}>
+                        {r.label}
+                      </div>
+                      <div className="font-body text-[10px] tracking-wide-2 uppercase text-muted-foreground mt-1">
+                        {r.desc}
+                      </div>
+                      {role === r.id && (
+                        <Check className="absolute top-2 right-2 h-3.5 w-3.5 text-gold" strokeWidth={3} />
+                      )}
+                    </button>
+                  ))}
                 </div>
               </div>
+            )}
 
-              <div className="space-y-2">
-                <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.password}</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type={showPw ? "text" : "password"}
-                    placeholder="••••••••"
-                    className="pl-10 pr-10 h-12 rounded-none bg-secondary/40 border-border focus-visible:border-gold focus-visible:ring-0 font-body"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPw((v) => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-gold transition-colors"
-                  >
-                    {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
+            <Button type="submit"
+              className="group w-full h-13 py-4 mt-2 bg-foreground text-background hover:bg-gold hover:text-primary-foreground rounded-none font-body text-xs tracking-luxe uppercase transition-all">
+              <span>{isRegister ? c.create : c.signIn}</span>
+              <ArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Button>
 
-              {isRegister && (
-                <div className="space-y-3">
-                  <Label className="font-body text-[10px] tracking-luxe uppercase text-foreground/70">{c.joinAs}</Label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {(["client", "coach"] as Role[]).map((r) => (
-                      <button
-                        key={r}
-                        type="button"
-                        onClick={() => setRole(r)}
-                        className={`relative h-12 px-4 font-body text-xs tracking-luxe uppercase border transition-all ${
-                          role === r
-                            ? "bg-foreground text-background border-foreground shadow-gold"
-                            : "bg-transparent text-foreground/70 border-border hover:border-gold/60"
-                        }`}
-                      >
-                        {r === "client" ? c.client : c.coach}
-                        {role === r && (
-                          <Sparkles className="absolute top-1 right-1 h-3 w-3 text-gold" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                className="w-full h-13 py-4 bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-xs tracking-luxe uppercase shadow-gold"
-              >
-                {isRegister ? c.create : c.signIn}
-              </Button>
-
-              {isRegister && (
-                <p className="text-[10px] text-muted-foreground text-center font-body leading-relaxed">
-                  {c.terms}
-                </p>
-              )}
-            </form>
-
-            {/* Switch mode */}
-            <div className="pt-6 mt-6 border-t border-border text-center">
-              <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
-                {isRegister ? c.hasAccount : c.noAccount}{" "}
-              </span>
-              <button
-                onClick={() => setMode(isRegister ? "login" : "register")}
-                className="font-body text-[10px] tracking-luxe uppercase text-gold hover:underline underline-offset-4"
-              >
-                {isRegister ? c.signInLink : c.signUpLink}
-              </button>
-            </div>
-          </div>
+            {isRegister && (
+              <p className="text-[10px] text-muted-foreground text-center font-body leading-relaxed pt-1">
+                {c.terms}
+              </p>
+            )}
+          </form>
         </div>
       </DialogContent>
     </Dialog>
