@@ -66,6 +66,13 @@ const packs = [
 ];
 
 const Index = () => {
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<"register" | "login">("register");
+  const [lang, setLang] = useState<Lang>("en");
+  const [langOpen, setLangOpen] = useState(false);
+  const openAuth = (mode: "register" | "login") => { setAuthMode(mode); setAuthOpen(true); };
+  const langLabel: Record<Lang, string> = { en: "EN", de: "DE", sr: "SR" };
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
