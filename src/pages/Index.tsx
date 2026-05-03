@@ -400,6 +400,8 @@ const Index = () => {
           <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Dalila Bahtijarevic</p>
         </div>
       </footer>
+
+      <AuthDialog open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} lang={lang} onLangChange={setLang} />
     </div>
   );
 };
