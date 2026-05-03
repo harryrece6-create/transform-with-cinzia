@@ -82,10 +82,30 @@ const Index = () => {
             <a href="#tryout" className="hover:text-gold transition-colors">Try-out</a>
             <a href="#packs" className="hover:text-gold transition-colors">Packs</a>
           </nav>
-          <div className="flex items-center gap-4">
-            <span className="hidden sm:block font-body text-[10px] tracking-luxe uppercase text-muted-foreground">EN</span>
-            <Button asChild size="sm" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-[10px] tracking-luxe uppercase">
-              <a href="#packs">Choose Pack</a>
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <button
+                onClick={() => setLangOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-border hover:border-gold/60 font-body text-[10px] tracking-luxe uppercase transition-colors"
+              >
+                <Globe className="h-3 w-3" /> {langLabel[lang]}
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-1 z-50 bg-background border border-border min-w-[80px] shadow-deep">
+                  {(Object.keys(langLabel) as Lang[]).map((l) => (
+                    <button key={l} onClick={() => { setLang(l); setLangOpen(false); }}
+                      className={`w-full text-left px-3 py-2 font-body text-[10px] tracking-luxe uppercase hover:bg-secondary hover:text-gold transition-colors ${l === lang ? "text-gold" : ""}`}>
+                      {langLabel[l]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-none font-body text-[10px] tracking-luxe uppercase bg-transparent">
+              Sign In
+            </Button>
+            <Button size="sm" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none font-body text-[10px] tracking-luxe uppercase">
+              Create Account
             </Button>
             <Menu className="md:hidden h-5 w-5 text-foreground/70" />
           </div>
