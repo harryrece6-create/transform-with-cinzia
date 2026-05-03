@@ -8,9 +8,10 @@ import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 
 const Monogram = ({ className = "" }: { className?: string }) => (
-  <span className={`font-display font-bold ${className}`}>
-    <span className="gold-text">M</span>
-    <span className="text-foreground/80">H</span>
+  <span className={`font-display font-bold inline-flex items-center ${className}`}>
+    <span className="gold-text">D</span>
+    <span className="mx-0.5 text-foreground/40 italic font-light">/</span>
+    <span className="text-foreground italic">B</span>
   </span>
 );
 
