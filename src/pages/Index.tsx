@@ -8,6 +8,7 @@ import packMorning from "@/assets/pack-morning.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
+import { CookieBanner } from "@/components/CookieBanner";
 import { useReveal } from "@/hooks/use-reveal";
 
 type Lang = "en" | "de" | "sr";
@@ -313,18 +314,54 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-12 bg-background">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <Monogram className="text-xl" />
-            <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Dalila Bahtijarevic · FitLife Coach</span>
+      <footer className="border-t border-border pt-16 pb-10 bg-background">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-4 gap-10 mb-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-4">
+                <Monogram className="text-2xl" />
+              </div>
+              <p className="font-body text-sm text-muted-foreground max-w-sm leading-relaxed mb-4">
+                Certified FitLife coaching focused on real, lasting transformations. Strong body. Strong mind. Better life.
+              </p>
+              <p className="font-script text-xl text-gold">Prove yourself right.</p>
+            </div>
+
+            <div>
+              <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Explore</h4>
+              <ul className="space-y-2 font-body text-sm">
+                <li><a href="#coach" className="text-foreground/80 hover:text-gold transition-colors">Coach</a></li>
+                <li><a href="#why" className="text-foreground/80 hover:text-gold transition-colors">Why Us</a></li>
+                <li><a href="#packs" className="text-foreground/80 hover:text-gold transition-colors">Packs</a></li>
+                <li><button onClick={() => openAuth("register")} className="text-foreground/80 hover:text-gold transition-colors">Create Account</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Connect</h4>
+              <ul className="space-y-2 font-body text-sm">
+                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">Instagram</a></li>
+                <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">TikTok</a></li>
+                <li><a href="mailto:hello@dalila.coach" className="text-foreground/80 hover:text-gold transition-colors">Email</a></li>
+              </ul>
+              <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mt-6 mb-3">Legal</h4>
+              <ul className="space-y-2 font-body text-sm">
+                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Cookie Policy</a></li>
+              </ul>
+            </div>
           </div>
-          <p className="font-script text-lg text-gold">Prove yourself right.</p>
-          <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Dalila Bahtijarevic</p>
+
+          <div className="border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Dalila Bahtijarevic · All rights reserved</p>
+            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Made with care · Belgium</p>
+          </div>
         </div>
       </footer>
 
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} lang={lang} onLangChange={setLang} />
+      <CookieBanner lang={lang} />
     </div>
   );
 };
