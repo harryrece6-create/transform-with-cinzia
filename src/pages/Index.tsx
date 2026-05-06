@@ -8,6 +8,7 @@ import packMorning from "@/assets/pack-morning.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
+import { useReveal } from "@/hooks/use-reveal";
 
 type Lang = "en" | "de" | "sr";
 
@@ -87,6 +88,8 @@ const Index = () => {
     if (typeof window !== "undefined") localStorage.setItem("theme", next);
   };
 
+  useReveal();
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
@@ -130,7 +133,7 @@ const Index = () => {
             <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-[10px] tracking-luxe uppercase bg-transparent">
               Sign In
             </Button>
-            <Button size="sm" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-[10px] tracking-luxe uppercase">
+            <Button size="sm" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-[10px] tracking-luxe uppercase">
               Create Account
             </Button>
             <Menu className="md:hidden h-5 w-5 text-foreground/70" />
@@ -162,7 +165,7 @@ const Index = () => {
               Your transformation starts with a single decision.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
+              <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
                 Create Account
               </Button>
               <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
@@ -203,17 +206,17 @@ const Index = () => {
       {/* WHY CHOOSE US */}
       <section id="why" className="py-32 bg-secondary/30 relative overflow-hidden">
         <div className="container mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20" data-reveal>
             <SectionLabel>Why Choose Us</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-2xl relative">
+              <Card key={i} data-reveal data-reveal-delay={String(i + 1)} className="hover-lift group bg-background/60 border-border hover:border-gold/60 hover:shadow-soft transition-all duration-500 p-8 rounded-2xl relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
                 <div className="font-display text-5xl gold-text/30 mb-6 opacity-30">0{i + 1}</div>
-                <f.icon className="h-7 w-7 text-gold mb-6" strokeWidth={1.2} />
+                <f.icon className="h-7 w-7 text-gold mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.2} />
                 <h3 className="font-display text-2xl mb-3">{f.title}</h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </Card>
@@ -225,14 +228,14 @@ const Index = () => {
       {/* PACKS */}
       <section id="packs" className="py-32 bg-secondary/30">
         <div className="container mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20" data-reveal>
             <SectionLabel>Available Packages</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl">Choose <em className="font-normal gold-text">Your Pack</em></h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packs.map((p) => (
-              <Card key={p.name} className={`relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40"} transition-all duration-500`}>
+            {packs.map((p, i) => (
+              <Card key={p.name} data-reveal data-reveal-delay={String(i + 1)} className={`hover-lift relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40 hover:shadow-soft"} transition-all duration-500`}>
                 {p.popular && (
                   <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
                 )}
@@ -288,7 +291,7 @@ const Index = () => {
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.15),transparent_60%)]" />
         </div>
-        <div className="container mx-auto text-center max-w-3xl">
+        <div className="container mx-auto text-center max-w-3xl" data-reveal>
           <SectionLabel>Ready to Transform?</SectionLabel>
           <h2 className="font-display text-6xl md:text-7xl mb-8">
             Start Your <br /><em className="font-normal gold-text">Journey Today</em>
@@ -299,7 +302,7 @@ const Index = () => {
             that you've been waiting for.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Create Account
             </Button>
             <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
