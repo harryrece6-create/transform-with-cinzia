@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe } from "lucide-react";
+import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon } from "lucide-react";
 import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning from "@/assets/pack-morning.jpg";
