@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe } from "lucide-react";
+import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon } from "lucide-react";
 import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning from "@/assets/pack-morning.jpg";
@@ -69,8 +69,23 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [lang, setLang] = useState<Lang>("en");
   const [langOpen, setLangOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
   const openAuth = (mode: "register" | "login") => { setAuthMode(mode); setAuthOpen(true); };
   const langLabel: Record<Lang, string> = { en: "EN", de: "DE", sr: "SR" };
+
+  if (typeof document !== "undefined") {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    if (typeof window !== "undefined") localStorage.setItem("theme", next);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -105,6 +120,13 @@ const Index = () => {
                 </div>
               )}
             </div>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="inline-flex items-center justify-center h-8 w-8 border border-border hover:border-gold/60 transition-colors"
+            >
+              {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+            </button>
             <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-[10px] tracking-luxe uppercase bg-transparent">
               Sign In
             </Button>
@@ -140,28 +162,12 @@ const Index = () => {
               Your transformation starts with a single decision.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
-                <a href="#tryout">Free 3-Day Try-out</a>
+              <Button size="lg" onClick={() => openAuth("register")} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
+                Create Account
               </Button>
               <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
                 <a href="#packs">Choose Your Pack <ArrowRight className="ml-2 h-3 w-3" /></a>
               </Button>
-            </div>
-            <div className="mt-16 flex items-center gap-8">
-              <div>
-                <div className="font-display text-3xl gold-text">25</div>
-                <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground mt-1">Day Program</div>
-              </div>
-              <div className="h-10 w-px bg-border" />
-              <div>
-                <div className="font-display text-3xl gold-text">7K+</div>
-                <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground mt-1">Community</div>
-              </div>
-              <div className="h-10 w-px bg-border" />
-              <div>
-                <div className="font-display text-3xl gold-text">100%</div>
-                <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground mt-1">Real Results</div>
-              </div>
             </div>
           </div>
 
