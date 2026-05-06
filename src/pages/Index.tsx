@@ -117,7 +117,14 @@ const Index = () => {
                       {langLabel[l]}
                     </button>
                   ))}
-                </div>
+            </div>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="inline-flex items-center justify-center h-8 w-8 border border-border hover:border-gold/60 transition-colors"
+            >
+              {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+            </button>
               )}
             </div>
             <Button size="sm" onClick={() => openAuth("login")} variant="outline" className="hidden sm:inline-flex border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-[10px] tracking-luxe uppercase bg-transparent">
