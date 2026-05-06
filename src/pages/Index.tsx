@@ -206,17 +206,17 @@ const Index = () => {
       {/* WHY CHOOSE US */}
       <section id="why" className="py-32 bg-secondary/30 relative overflow-hidden">
         <div className="container mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20" data-reveal>
             <SectionLabel>Why Choose Us</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-2xl relative">
+              <Card key={i} data-reveal data-reveal-delay={String(i + 1)} className="hover-lift group bg-background/60 border-border hover:border-gold/60 hover:shadow-soft transition-all duration-500 p-8 rounded-2xl relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
                 <div className="font-display text-5xl gold-text/30 mb-6 opacity-30">0{i + 1}</div>
-                <f.icon className="h-7 w-7 text-gold mb-6" strokeWidth={1.2} />
+                <f.icon className="h-7 w-7 text-gold mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.2} />
                 <h3 className="font-display text-2xl mb-3">{f.title}</h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </Card>
