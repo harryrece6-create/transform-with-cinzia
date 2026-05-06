@@ -8,6 +8,7 @@ import packMorning from "@/assets/pack-morning.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
+import { CookieBanner } from "@/components/CookieBanner";
 import { useReveal } from "@/hooks/use-reveal";
 
 type Lang = "en" | "de" | "sr";
