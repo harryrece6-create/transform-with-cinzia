@@ -194,35 +194,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* STORY / VIDEO */}
-      <section id="story" className="py-32 relative">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <SectionLabel>Watch Our Story</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl mb-6">See Real <em className="font-normal">Change</em></h2>
-            <p className="font-body text-muted-foreground max-w-xl mx-auto">
-              See how real people are changing their lives one challenge at a time.
-            </p>
-          </div>
-
-          <div className="relative max-w-5xl mx-auto group cursor-pointer">
-            <div className="absolute -inset-2 border border-gold/30" />
-            <div className="relative aspect-video overflow-hidden">
-              <img src={storyImg} alt="Challenge story video" loading="lazy" width={1280} height={800}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <button className="h-20 w-20 rounded-full bg-gold flex items-center justify-center shadow-gold hover:scale-110 transition-transform">
-                  <Play className="h-7 w-7 text-primary-foreground ml-1" fill="currentColor" />
-                </button>
-                <span className="mt-6 font-body text-[10px] tracking-luxe uppercase text-foreground/80">Challenge Video</span>
-              </div>
-              <div className="absolute top-4 left-4 px-3 py-1 bg-gold/90 font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Ready</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* WHY CHOOSE US */}
       <section id="why" className="py-32 bg-secondary/30 relative overflow-hidden">
         <div className="container mx-auto">
@@ -231,7 +202,7 @@ const Index = () => {
             <h2 className="font-display text-5xl md:text-6xl">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Card key={i} className="group bg-background/60 border-border hover:border-gold/60 transition-all duration-500 p-8 rounded-2xl relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
@@ -242,62 +213,6 @@ const Index = () => {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* TRY-OUT */}
-      <section id="tryout" className="py-32 relative">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.08),transparent_70%)]" />
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <SectionLabel>Free 3-Day Try-Out</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl mb-6">
-              Discover our <br /><em className="font-normal">21 Days Challenge</em>
-            </h2>
-            <p className="font-body text-muted-foreground leading-relaxed mb-10 max-w-lg">
-              Follow along for 3 free days via Telegram and see exactly how our challenge works
-              while getting to know us and the coaching vibe.
-            </p>
-
-            <div className="space-y-5">
-              {[
-                "Daily Telegram updates so you can follow the rhythm of the challenge.",
-                "A first look at our structure, support, and community energy.",
-                "A low-threshold way to feel if this is the right start for you.",
-              ].map((t, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="shrink-0 mt-1 h-5 w-5 border border-gold flex items-center justify-center">
-                    <Check className="h-3 w-3 text-gold" strokeWidth={3} />
-                  </div>
-                  <p className="font-body text-sm text-foreground/80 leading-relaxed">{t}</p>
-                </div>
-              ))}
-            </div>
-
-            <Button size="lg" className="mt-12 bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
-              Try the 3-Day Free Pass
-            </Button>
-          </div>
-
-          <Card className="bg-secondary/60 border-gold/30 rounded-2xl p-10 shadow-soft relative">
-            <div className="absolute top-0 right-0 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">I'm Interested</div>
-            <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">21 Days Challenge Try-out</div>
-            <h3 className="font-display text-3xl mb-2">Follow 3 free days <br /><em className="font-normal">with us on Telegram.</em></h3>
-            <div className="gold-divider my-8" />
-            <ul className="space-y-4 mb-8">
-              {[
-                "3 days of Telegram access",
-                "Behind-the-scenes look at the challenge flow",
-                "Direct feel for our coaching and community",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-3 font-body text-sm">
-                  <span className="h-1 w-1 rounded-full bg-gold" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <p className="font-script text-xl text-gold">Discipline today. Results tomorrow.</p>
-          </Card>
         </div>
       </section>
 
