@@ -291,7 +291,7 @@ const Index = () => {
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.15),transparent_60%)]" />
         </div>
-        <div className="container mx-auto text-center max-w-3xl">
+        <div className="container mx-auto text-center max-w-3xl" data-reveal>
           <SectionLabel>Ready to Transform?</SectionLabel>
           <h2 className="font-display text-6xl md:text-7xl mb-8">
             Start Your <br /><em className="font-normal gold-text">Journey Today</em>
