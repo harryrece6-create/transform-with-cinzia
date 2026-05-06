@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon } from "lucide-react";
@@ -341,14 +342,13 @@ const Index = () => {
               <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Connect</h4>
               <ul className="space-y-2 font-body text-sm">
                 <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">Instagram</a></li>
-                <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">TikTok</a></li>
                 <li><a href="mailto:hello@dalila.coach" className="text-foreground/80 hover:text-gold transition-colors">Email</a></li>
               </ul>
               <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mt-6 mb-3">Legal</h4>
               <ul className="space-y-2 font-body text-sm">
-                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-foreground/80 hover:text-gold transition-colors">Cookie Policy</a></li>
+                <li><Link to="/privacy" className="text-foreground/80 hover:text-gold transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="text-foreground/80 hover:text-gold transition-colors">Terms of Service</Link></li>
+                <li><Link to="/cookies" className="text-foreground/80 hover:text-gold transition-colors">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
