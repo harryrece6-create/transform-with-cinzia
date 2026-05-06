@@ -29,7 +29,6 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 
 const features = [
   { icon: Trophy, title: "Proven Results", desc: "Real transformations from real clients who showed up and did the work." },
-  { icon: Users, title: "Community Driven", desc: "Surround yourself with people who push you higher every single day." },
   { icon: Heart, title: "Personalized Support", desc: "Certified coaching that adapts to your body, your pace, your life." },
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
@@ -84,9 +83,7 @@ const Index = () => {
           </a>
           <nav className="hidden md:flex items-center gap-10 font-body text-xs tracking-wide-2 uppercase">
             <a href="#coach" className="hover:text-gold transition-colors">Coach</a>
-            <a href="#story" className="hover:text-gold transition-colors">Story</a>
             <a href="#why" className="hover:text-gold transition-colors">Why Us</a>
-            <a href="#tryout" className="hover:text-gold transition-colors">Try-out</a>
             <a href="#packs" className="hover:text-gold transition-colors">Packs</a>
           </nav>
           <div className="flex items-center gap-3">
