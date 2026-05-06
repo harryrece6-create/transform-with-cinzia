@@ -228,14 +228,14 @@ const Index = () => {
       {/* PACKS */}
       <section id="packs" className="py-32 bg-secondary/30">
         <div className="container mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20" data-reveal>
             <SectionLabel>Available Packages</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl">Choose <em className="font-normal gold-text">Your Pack</em></h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packs.map((p) => (
-              <Card key={p.name} className={`relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40"} transition-all duration-500`}>
+            {packs.map((p, i) => (
+              <Card key={p.name} data-reveal data-reveal-delay={String(i + 1)} className={`hover-lift relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40 hover:shadow-soft"} transition-all duration-500`}>
                 {p.popular && (
                   <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
                 )}
