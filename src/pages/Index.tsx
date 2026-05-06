@@ -88,6 +88,8 @@ const Index = () => {
     if (typeof window !== "undefined") localStorage.setItem("theme", next);
   };
 
+  useReveal();
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
