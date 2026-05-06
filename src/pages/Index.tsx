@@ -69,8 +69,23 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [lang, setLang] = useState<Lang>("en");
   const [langOpen, setLangOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
   const openAuth = (mode: "register" | "login") => { setAuthMode(mode); setAuthOpen(true); };
   const langLabel: Record<Lang, string> = { en: "EN", de: "DE", sr: "SR" };
+
+  if (typeof document !== "undefined") {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    if (typeof window !== "undefined") localStorage.setItem("theme", next);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
