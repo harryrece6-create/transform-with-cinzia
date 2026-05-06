@@ -355,7 +355,7 @@ const Index = () => {
 
           <div className="border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">© 2026 Dalila Bahtijarevic · All rights reserved</p>
-            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Made with care · Belgium</p>
+            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">MADE WITH CARE</p>
           </div>
         </div>
       </footer>
