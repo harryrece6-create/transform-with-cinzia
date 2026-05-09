@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon } from "lucide-react";
+import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react";
 import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning from "@/assets/pack-morning.jpg";
@@ -30,18 +30,92 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+type PackMedia = { type: "image" | "video"; src: string; poster?: string };
+
+const PackMediaViewer = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
+  const [idx, setIdx] = useState(0);
+  const current = media[idx];
+  const go = (dir: number) => setIdx((i) => (i + dir + media.length) % media.length);
+  return (
+    <>
+      {current.type === "video" ? (
+        <video
+          key={current.src}
+          src={current.src}
+          poster={current.poster}
+          controls
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <img
+          key={current.src}
+          src={current.src}
+          alt={alt}
+          loading="lazy"
+          width={900}
+          height={700}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      )}
+      {media.length > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => go(-1)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 inline-flex items-center justify-center bg-background/80 backdrop-blur border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => go(1)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 inline-flex items-center justify-center bg-background/80 backdrop-blur border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+            {media.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to media ${i + 1}`}
+                onClick={() => setIdx(i)}
+                className={`h-1.5 w-5 transition-colors ${i === idx ? "bg-gold" : "bg-background/60 border border-gold/40"}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
 const features = [
   { icon: Trophy, title: "Proven Results", desc: "Real transformations from real clients who showed up and did the work." },
   { icon: Heart, title: "Personalized Support", desc: "Certified coaching that adapts to your body, your pace, your life." },
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
 
-const packs = [
+
+const packs: Array<{
+  name: string;
+  tagline: string;
+  price: string;
+  media: PackMedia[];
+  desc: string;
+  perfect: string;
+  items: string[];
+  popular?: boolean;
+}> = [
   {
     name: "Morning Kickstart Pack",
     tagline: "Your clean, easy morning reset starts here.",
     price: "€65.75",
-    image: packMorning,
+    media: [{ type: "image", src: packMorning }],
     desc: "A strong day starts with a strong morning. This pack puts the focus on breakfast with Formula 1 so you feel more in control, more consistent, and ready to go.",
     perfect: "Busy people who want a simple healthy routine that is easy to stick to.",
     items: ["Formula 1 breakfast support", "A simple, healthy start to your day", "More structure and consistency"],
@@ -50,7 +124,7 @@ const packs = [
     name: "Total Results Pack",
     tagline: "Your all-in combo for stronger results, faster.",
     price: "€156.80",
-    image: packTotal,
+    media: [{ type: "image", src: packTotal }],
     desc: "The perfect breakfast and hydration combo for people who want to go all-in. Formula 1, the herbal drink and aloe vera work together to support your metabolism and your results from day one.",
     perfect: "People who want the most complete start and the biggest push toward results.",
     items: ["Formula 1 breakfast", "Herbal drink for energy & focus", "Aloe vera for hydration & digestion"],
@@ -60,7 +134,7 @@ const packs = [
     name: "Hydration Boost Pack",
     tagline: "Hydrate better, feel lighter, boost your daily flow.",
     price: "€95.90",
-    image: packHydration,
+    media: [{ type: "image", src: packHydration }],
     desc: "Feel sharper and more energized throughout the day. Herbal drink in lemon, peach or raspberry plus aloe vera mango — hydration, detox, energy, fat burning and gut balance in one routine.",
     perfect: "Anyone who wants more energy, better hydration and visible momentum.",
     items: ["Herbal drink (lemon, peach, raspberry)", "Aloe vera mango for hydration", "Detox, energy, and gut balance"],
@@ -242,10 +316,9 @@ const Index = () => {
                   <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
                 )}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={p.image} alt={p.name} loading="lazy" width={900} height={700}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-background/80 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</div>
+                  <PackMediaViewer media={p.media} alt={p.name} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-background/80 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</div>
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
