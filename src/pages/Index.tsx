@@ -36,12 +36,23 @@ const features = [
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
 
-const packs = [
+type PackMedia = { type: "image" | "video"; src: string; poster?: string };
+
+const packs: Array<{
+  name: string;
+  tagline: string;
+  price: string;
+  media: PackMedia[];
+  desc: string;
+  perfect: string;
+  items: string[];
+  popular?: boolean;
+}> = [
   {
     name: "Morning Kickstart Pack",
     tagline: "Your clean, easy morning reset starts here.",
     price: "€65.75",
-    image: packMorning,
+    media: [{ type: "image", src: packMorning }],
     desc: "A strong day starts with a strong morning. This pack puts the focus on breakfast with Formula 1 so you feel more in control, more consistent, and ready to go.",
     perfect: "Busy people who want a simple healthy routine that is easy to stick to.",
     items: ["Formula 1 breakfast support", "A simple, healthy start to your day", "More structure and consistency"],
@@ -50,7 +61,7 @@ const packs = [
     name: "Total Results Pack",
     tagline: "Your all-in combo for stronger results, faster.",
     price: "€156.80",
-    image: packTotal,
+    media: [{ type: "image", src: packTotal }],
     desc: "The perfect breakfast and hydration combo for people who want to go all-in. Formula 1, the herbal drink and aloe vera work together to support your metabolism and your results from day one.",
     perfect: "People who want the most complete start and the biggest push toward results.",
     items: ["Formula 1 breakfast", "Herbal drink for energy & focus", "Aloe vera for hydration & digestion"],
@@ -60,7 +71,7 @@ const packs = [
     name: "Hydration Boost Pack",
     tagline: "Hydrate better, feel lighter, boost your daily flow.",
     price: "€95.90",
-    image: packHydration,
+    media: [{ type: "image", src: packHydration }],
     desc: "Feel sharper and more energized throughout the day. Herbal drink in lemon, peach or raspberry plus aloe vera mango — hydration, detox, energy, fat burning and gut balance in one routine.",
     perfect: "Anyone who wants more energy, better hydration and visible momentum.",
     items: ["Herbal drink (lemon, peach, raspberry)", "Aloe vera mango for hydration", "Detox, energy, and gut balance"],
