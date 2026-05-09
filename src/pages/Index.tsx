@@ -100,7 +100,6 @@ const features = [
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
 
-type PackMedia = { type: "image" | "video"; src: string; poster?: string };
 
 const packs: Array<{
   name: string;
