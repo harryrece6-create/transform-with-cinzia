@@ -30,6 +30,70 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+type PackMedia = { type: "image" | "video"; src: string; poster?: string };
+
+const PackMediaViewer = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
+  const [idx, setIdx] = useState(0);
+  const current = media[idx];
+  const go = (dir: number) => setIdx((i) => (i + dir + media.length) % media.length);
+  return (
+    <>
+      {current.type === "video" ? (
+        <video
+          key={current.src}
+          src={current.src}
+          poster={current.poster}
+          controls
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <img
+          key={current.src}
+          src={current.src}
+          alt={alt}
+          loading="lazy"
+          width={900}
+          height={700}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      )}
+      {media.length > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => go(-1)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 inline-flex items-center justify-center bg-background/80 backdrop-blur border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => go(1)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 inline-flex items-center justify-center bg-background/80 backdrop-blur border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+            {media.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to media ${i + 1}`}
+                onClick={() => setIdx(i)}
+                className={`h-1.5 w-5 transition-colors ${i === idx ? "bg-gold" : "bg-background/60 border border-gold/40"}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
 const features = [
   { icon: Trophy, title: "Proven Results", desc: "Real transformations from real clients who showed up and did the work." },
   { icon: Heart, title: "Personalized Support", desc: "Certified coaching that adapts to your body, your pace, your life." },
