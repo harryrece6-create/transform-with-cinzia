@@ -327,7 +327,6 @@ const Index = () => {
 
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="font-display text-4xl gold-text">{p.price}</span>
-                    <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">*</span>
                   </div>
 
                   <p className="font-body text-sm text-foreground/70 leading-relaxed mb-6">{p.desc}</p>
@@ -355,9 +354,7 @@ const Index = () => {
             ))}
           </div>
 
-          <p className="text-center font-body text-xs text-muted-foreground mt-10 italic">
-            * These are the prices in Belgium. Prices may differ in other countries.
-          </p>
+          <div className="mt-10" />
         </div>
       </section>
 
