@@ -43,9 +43,6 @@ const FAQS: { q: string; a: string }[] = [
   },
 ];
 
-// Change this to the address that should receive orders.
-const ORDER_EMAIL = "hello@dalila.coach";
-
 const orderSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
   email: z.string().trim().email("Please enter a valid email").max(160),
