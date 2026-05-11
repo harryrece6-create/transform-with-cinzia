@@ -10,6 +10,7 @@ import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
 import { CookieBanner } from "@/components/CookieBanner";
+import { PackDialog, type Pack } from "@/components/PackDialog";
 import { useReveal } from "@/hooks/use-reveal";
 
 type Lang = "en" | "de" | "sr";
@@ -146,6 +147,9 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [lang, setLang] = useState<Lang>("en");
   const [langOpen, setLangOpen] = useState(false);
+  const [activePack, setActivePack] = useState<Pack | null>(null);
+  const [packOpen, setPackOpen] = useState(false);
+  const openPack = (p: Pack) => { setActivePack(p); setPackOpen(true); };
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "light";
     const stored = localStorage.getItem("theme");
@@ -346,9 +350,14 @@ const Index = () => {
                     ))}
                   </ul>
 
-                  <Button className={`mt-auto rounded-2xl font-body text-xs tracking-luxe uppercase h-12 ${p.popular ? "bg-gold text-primary-foreground hover:bg-gold/90" : "bg-foreground text-background hover:bg-gold hover:text-primary-foreground"}`}>
-                    Get In Touch
-                  </Button>
+                  <div className="mt-auto flex flex-col gap-2">
+                    <Button onClick={() => openPack(p)} className={`rounded-2xl font-body text-xs tracking-luxe uppercase h-12 ${p.popular ? "bg-gold text-primary-foreground hover:bg-gold/90" : "bg-foreground text-background hover:bg-gold hover:text-primary-foreground"}`}>
+                      View Details
+                    </Button>
+                    <button onClick={() => openPack(p)} className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground hover:text-gold transition-colors">
+                      Quick look →
+                    </button>
+                  </div>
                 </div>
               </Card>
             ))}
@@ -431,6 +440,7 @@ const Index = () => {
       </footer>
 
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} lang={lang} onLangChange={setLang} />
+      <PackDialog pack={activePack} open={packOpen} onOpenChange={setPackOpen} onGetInTouch={() => openAuth("register")} />
       <CookieBanner lang={lang} />
     </div>
   );
