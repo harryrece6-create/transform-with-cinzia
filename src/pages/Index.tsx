@@ -10,6 +10,7 @@ import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal from "@/assets/pack-total.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
 import { CookieBanner } from "@/components/CookieBanner";
+import { PackDialog, type Pack } from "@/components/PackDialog";
 import { useReveal } from "@/hooks/use-reveal";
 
 type Lang = "en" | "de" | "sr";
@@ -146,6 +147,9 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [lang, setLang] = useState<Lang>("en");
   const [langOpen, setLangOpen] = useState(false);
+  const [activePack, setActivePack] = useState<Pack | null>(null);
+  const [packOpen, setPackOpen] = useState(false);
+  const openPack = (p: Pack) => { setActivePack(p); setPackOpen(true); };
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "light";
     const stored = localStorage.getItem("theme");

@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Check, X, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 export type PackMedia = { type: "image" | "video"; src: string; poster?: string };
