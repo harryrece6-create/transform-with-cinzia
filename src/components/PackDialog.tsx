@@ -1,7 +1,17 @@
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { useToast } from "@/hooks/use-toast";
+import { Check, ChevronLeft, ChevronRight, Sparkles, Minus, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
+import { z } from "zod";
 
 export type PackMedia = { type: "image" | "video"; src: string; poster?: string };
 
@@ -15,6 +25,31 @@ export type Pack = {
   items: string[];
   popular?: boolean;
 };
+
+// EDIT THESE: shared FAQ shown inside every pack popup. Keep generic & honest.
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "How do I place an order?",
+    a: "Fill the short form on the right with your name, email and quantity. It opens your email app with the pack details prefilled — just press send.",
+  },
+  {
+    q: "Can I change or combine packs?",
+    a: "Yes. If you'd like a different combination or quantity, mention it in your message and we'll come back to you.",
+  },
+  {
+    q: "When can I start?",
+    a: "As soon as your order is confirmed and your products arrive. We'll guide you through the first steps personally.",
+  },
+];
+
+// Change this to the address that should receive orders.
+const ORDER_EMAIL = "hello@dalila.coach";
+
+const orderSchema = z.object({
+  name: z.string().trim().min(2, "Please enter your name").max(80),
+  email: z.string().trim().email("Please enter a valid email").max(160),
+  quantity: z.number().int().min(1).max(20),
+});
 
 const MediaCarousel = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
   const [idx, setIdx] = useState(0);
@@ -50,14 +85,48 @@ export const PackDialog = ({
   pack,
   open,
   onOpenChange,
-  onGetInTouch,
 }: {
   pack: Pack | null;
   open: boolean;
   onOpenChange: (v: boolean) => void;
-  onGetInTouch?: () => void;
 }) => {
+  const { toast } = useToast();
+  const [qty, setQty] = useState(1);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  // reset when reopening
+  useEffect(() => {
+    if (open) { setQty(1); setName(""); setEmail(""); }
+  }, [open, pack?.name]);
+
   if (!pack) return null;
+
+  const handleOrder = (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = orderSchema.safeParse({ name, email, quantity: qty });
+    if (!result.success) {
+      toast({
+        title: "Check your details",
+        description: result.error.errors[0]?.message ?? "Please review the form.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const subject = `Order request — ${pack.name}`;
+    const body =
+      `Hi,\n\nI'd like to order:\n` +
+      `• Pack: ${pack.name}\n` +
+      `• Quantity: ${qty}\n` +
+      `• Listed price (per pack): ${pack.price}\n\n` +
+      `Name: ${name}\nEmail: ${email}\n\nThank you!`;
+    const href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+    toast({
+      title: "Opening your email app",
+      description: "Just press send to complete your request.",
+    });
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -116,22 +185,58 @@ export const PackDialog = ({
               </ul>
             </div>
 
-            <div className="mt-auto flex flex-col sm:flex-row gap-3">
-              <Button
-                onClick={() => { onGetInTouch?.(); onOpenChange(false); }}
-                className="btn-shine flex-1 bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold"
-              >
-                Get In Touch
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => onOpenChange(false)}
-                className="flex-1 border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-12 bg-transparent"
-              >
-                Continue Browsing
-              </Button>
-            </div>
+            {/* ORDER FORM */}
+            <form onSubmit={handleOrder} className="border border-gold/30 p-6 mb-8 bg-secondary/20">
+              <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Request This Pack</div>
 
+              <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <Label htmlFor="pd-name" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Name</Label>
+                  <Input id="pd-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} required className="mt-1 rounded-none border-border focus:border-gold" />
+                </div>
+                <div>
+                  <Label htmlFor="pd-email" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Email</Label>
+                  <Input id="pd-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={160} required className="mt-1 rounded-none border-border focus:border-gold" />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between mb-5">
+                <Label className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Quantity</Label>
+                <div className="inline-flex items-center border border-border">
+                  <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
+                    <Minus className="h-3.5 w-3.5" />
+                  </button>
+                  <span className="w-10 text-center font-display text-lg">{qty}</span>
+                  <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Increase" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
+                    <Plus className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              <Button type="submit" className="btn-shine w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold">
+                Send Request
+              </Button>
+              <p className="font-body text-[10px] text-muted-foreground mt-3 text-center">
+                Opens your email app with details prefilled.
+              </p>
+            </form>
+
+            {/* FAQ */}
+            <div className="mb-2">
+              <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-3">Questions</div>
+              <Accordion type="single" collapsible className="border-t border-border">
+                {FAQS.map((f, i) => (
+                  <AccordionItem key={i} value={`item-${i}`} className="border-b border-border">
+                    <AccordionTrigger className="font-body text-sm text-left hover:text-gold hover:no-underline">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="font-body text-sm text-foreground/75 leading-relaxed">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </div>
       </DialogContent>

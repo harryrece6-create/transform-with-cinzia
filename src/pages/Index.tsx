@@ -440,7 +440,7 @@ const Index = () => {
       </footer>
 
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} lang={lang} onLangChange={setLang} />
-      <PackDialog pack={activePack} open={packOpen} onOpenChange={setPackOpen} onGetInTouch={() => openAuth("register")} />
+      <PackDialog pack={activePack} open={packOpen} onOpenChange={setPackOpen} />
       <CookieBanner lang={lang} />
     </div>
   );
