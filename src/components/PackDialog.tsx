@@ -9,7 +9,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
-import { Check, ChevronLeft, ChevronRight, Sparkles, Minus, Plus } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Check, ChevronLeft, ChevronRight, Sparkles, Minus, Plus, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
@@ -41,9 +42,6 @@ const FAQS: { q: string; a: string }[] = [
     a: "As soon as your order is confirmed and your products arrive. We'll guide you through the first steps personally.",
   },
 ];
-
-// Change this to the address that should receive orders.
-const ORDER_EMAIL = "hello@dalila.coach";
 
 const orderSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
@@ -94,15 +92,17 @@ export const PackDialog = ({
   const [qty, setQty] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   // reset when reopening
   useEffect(() => {
-    if (open) { setQty(1); setName(""); setEmail(""); }
+    if (open) { setQty(1); setName(""); setEmail(""); setSubmitted(false); }
   }, [open, pack?.name]);
 
   if (!pack) return null;
 
-  const handleOrder = (e: React.FormEvent) => {
+  const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = orderSchema.safeParse({ name, email, quantity: qty });
     if (!result.success) {
@@ -113,18 +113,30 @@ export const PackDialog = ({
       });
       return;
     }
-    const subject = `Order request — ${pack.name}`;
-    const body =
-      `Hi,\n\nI'd like to order:\n` +
-      `• Pack: ${pack.name}\n` +
-      `• Quantity: ${qty}\n` +
-      `• Listed price (per pack): ${pack.price}\n\n` +
-      `Name: ${name}\nEmail: ${email}\n\nThank you!`;
-    const href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+
+    setSubmitting(true);
+    const { error } = await supabase.from("pack_orders").insert({
+      pack_name: pack.name,
+      customer_name: result.data.name,
+      customer_email: result.data.email,
+      quantity: result.data.quantity,
+      listed_price: pack.price,
+    });
+    setSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Couldn't send your request",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSubmitted(true);
     toast({
-      title: "Opening your email app",
-      description: "Just press send to complete your request.",
+      title: "Request received",
+      description: `We'll get back to you shortly at ${result.data.email}.`,
     });
   };
 
@@ -186,40 +198,54 @@ export const PackDialog = ({
             </div>
 
             {/* ORDER FORM */}
-            <form onSubmit={handleOrder} className="border border-gold/30 p-6 mb-8 bg-secondary/20">
-              <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Request This Pack</div>
-
-              <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <Label htmlFor="pd-name" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Name</Label>
-                  <Input id="pd-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} required className="mt-1 rounded-none border-border focus:border-gold" />
+            {submitted ? (
+              <div className="border border-gold/40 p-6 mb-8 bg-secondary/20 text-center">
+                <div className="inline-flex h-12 w-12 items-center justify-center border border-gold mb-4">
+                  <Check className="h-5 w-5 text-gold" strokeWidth={2.5} />
                 </div>
-                <div>
-                  <Label htmlFor="pd-email" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Email</Label>
-                  <Input id="pd-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={160} required className="mt-1 rounded-none border-border focus:border-gold" />
-                </div>
+                <div className="font-display text-2xl mb-2">Request received</div>
+                <p className="font-body text-sm text-foreground/75">
+                  Thank you, {name.split(" ")[0] || "friend"}. We'll be in touch at <span className="text-gold">{email}</span> soon.
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleOrder} className="border border-gold/30 p-6 mb-8 bg-secondary/20">
+                <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Request This Pack</div>
 
-              <div className="flex items-center justify-between mb-5">
-                <Label className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Quantity</Label>
-                <div className="inline-flex items-center border border-border">
-                  <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
-                    <Minus className="h-3.5 w-3.5" />
-                  </button>
-                  <span className="w-10 text-center font-display text-lg">{qty}</span>
-                  <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Increase" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
-                    <Plus className="h-3.5 w-3.5" />
-                  </button>
+                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="pd-name" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Name</Label>
+                    <Input id="pd-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} required disabled={submitting} className="mt-1 rounded-none border-border focus:border-gold" />
+                  </div>
+                  <div>
+                    <Label htmlFor="pd-email" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Email</Label>
+                    <Input id="pd-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={160} required disabled={submitting} className="mt-1 rounded-none border-border focus:border-gold" />
+                  </div>
                 </div>
-              </div>
 
-              <Button type="submit" className="btn-shine w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold">
-                Send Request
-              </Button>
-              <p className="font-body text-[10px] text-muted-foreground mt-3 text-center">
-                Opens your email app with details prefilled.
-              </p>
-            </form>
+                <div className="flex items-center justify-between mb-5">
+                  <Label className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Quantity</Label>
+                  <div className="inline-flex items-center border border-border">
+                    <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} disabled={submitting} aria-label="Decrease" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors disabled:opacity-50">
+                      <Minus className="h-3.5 w-3.5" />
+                    </button>
+                    <span className="w-10 text-center font-display text-lg">{qty}</span>
+                    <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} disabled={submitting} aria-label="Increase" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors disabled:opacity-50">
+                      <Plus className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+                <Button type="submit" disabled={submitting} className="btn-shine w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold">
+                  {submitting ? (
+                    <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending</>
+                  ) : "Send Request"}
+                </Button>
+                <p className="font-body text-[10px] text-muted-foreground mt-3 text-center">
+                  Your request is saved securely. We'll reply by email.
+                </p>
+              </form>
+            )}
 
             {/* FAQ */}
             <div className="mb-2">
