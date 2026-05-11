@@ -101,6 +101,37 @@ const features = [
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
 
+const testimonials = [
+  {
+    quote: "I finally stopped starting over every Monday. The structure and the daily check-ins changed everything — I lost 12 kg and gained the confidence I'd been chasing for years.",
+    name: "Sarah V.",
+    role: "Mother of two · Brussels",
+    result: "−12 KG",
+    duration: "in 5 months",
+  },
+  {
+    quote: "Dalila is the real deal. No shortcuts, no nonsense — just a clear plan and someone who actually believes in you. I've never felt this strong, in my body and in my head.",
+    name: "Marko D.",
+    role: "Entrepreneur · Antwerp",
+    result: "−8% BODY FAT",
+    duration: "in 4 months",
+  },
+  {
+    quote: "What I love most is that this isn't a diet. It's a way of living that I can actually keep. Energy through the roof, sleep is better, and my morning routine is sacred now.",
+    name: "Lena B.",
+    role: "Designer · Ghent",
+    result: "+ DAILY ENERGY",
+    duration: "since day 30",
+  },
+];
+
+const stats = [
+  { value: "150+", label: "Clients Coached" },
+  { value: "5", label: "Years of Practice" },
+  { value: "98%", label: "Stay Consistent" },
+  { value: "1:1", label: "Personal Approach" },
+];
+
 
 const packs: Array<{
   name: string;
@@ -301,6 +332,75 @@ const Index = () => {
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RESULTS / TESTIMONIALS */}
+      <section id="results" className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-cream/40 to-background" />
+          <div className="absolute -right-32 top-20 h-80 w-80 blob bg-gold/10 animate-float" />
+          <div className="absolute -left-20 bottom-10 h-72 w-72 blob bg-clay/20 animate-float" style={{ animationDelay: '3s' }} />
+        </div>
+
+        <div className="container mx-auto">
+          <div className="text-center mb-20" data-reveal>
+            <SectionLabel>Real Results</SectionLabel>
+            <h2 className="font-display text-5xl md:text-6xl">
+              Words from <em className="font-normal gold-text">the inside</em>
+            </h2>
+            <p className="font-script text-2xl text-gold mt-6">Their story. Their proof.</p>
+          </div>
+
+          {/* Stats strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border mb-20 border border-border" data-reveal>
+            {stats.map((s) => (
+              <div key={s.label} className="bg-background p-8 text-center">
+                <div className="font-display text-4xl md:text-5xl gold-text mb-2">{s.value}</div>
+                <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonial cards */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <article
+                key={t.name}
+                data-reveal
+                data-reveal-delay={String(i + 1)}
+                className="hover-lift group relative bg-background border border-border hover:border-gold/60 hover:shadow-soft transition-all duration-500 p-10 rounded-2xl flex flex-col"
+              >
+                {/* big quote mark */}
+                <div className="font-display italic text-7xl text-gold leading-none mb-4 opacity-80 select-none">"</div>
+
+                <p className="font-body text-sm md:text-base text-foreground/85 leading-relaxed mb-8 italic">
+                  {t.quote}
+                </p>
+
+                <div className="gold-divider mb-6" />
+
+                <div className="flex items-end justify-between gap-4 mt-auto">
+                  <div>
+                    <div className="font-display text-lg">{t.name}</div>
+                    <div className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground mt-1">{t.role}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-body text-[10px] tracking-luxe uppercase gold-text">{t.result}</div>
+                    <div className="font-body text-[10px] tracking-wide text-muted-foreground mt-1">{t.duration}</div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center mt-16" data-reveal>
+            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
+              Names shared with permission · Results are individual and depend on commitment
+            </p>
           </div>
         </div>
       </section>
