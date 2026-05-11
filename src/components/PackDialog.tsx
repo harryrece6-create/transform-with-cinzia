@@ -92,15 +92,17 @@ export const PackDialog = ({
   const [qty, setQty] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   // reset when reopening
   useEffect(() => {
-    if (open) { setQty(1); setName(""); setEmail(""); }
+    if (open) { setQty(1); setName(""); setEmail(""); setSubmitted(false); }
   }, [open, pack?.name]);
 
   if (!pack) return null;
 
-  const handleOrder = (e: React.FormEvent) => {
+  const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = orderSchema.safeParse({ name, email, quantity: qty });
     if (!result.success) {
@@ -111,18 +113,30 @@ export const PackDialog = ({
       });
       return;
     }
-    const subject = `Order request — ${pack.name}`;
-    const body =
-      `Hi,\n\nI'd like to order:\n` +
-      `• Pack: ${pack.name}\n` +
-      `• Quantity: ${qty}\n` +
-      `• Listed price (per pack): ${pack.price}\n\n` +
-      `Name: ${name}\nEmail: ${email}\n\nThank you!`;
-    const href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+
+    setSubmitting(true);
+    const { error } = await supabase.from("pack_orders").insert({
+      pack_name: pack.name,
+      customer_name: result.data.name,
+      customer_email: result.data.email,
+      quantity: result.data.quantity,
+      listed_price: pack.price,
+    });
+    setSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Couldn't send your request",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSubmitted(true);
     toast({
-      title: "Opening your email app",
-      description: "Just press send to complete your request.",
+      title: "Request received",
+      description: `We'll get back to you shortly at ${result.data.email}.`,
     });
   };
 
