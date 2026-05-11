@@ -198,40 +198,54 @@ export const PackDialog = ({
             </div>
 
             {/* ORDER FORM */}
-            <form onSubmit={handleOrder} className="border border-gold/30 p-6 mb-8 bg-secondary/20">
-              <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Request This Pack</div>
-
-              <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <Label htmlFor="pd-name" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Name</Label>
-                  <Input id="pd-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} required className="mt-1 rounded-none border-border focus:border-gold" />
+            {submitted ? (
+              <div className="border border-gold/40 p-6 mb-8 bg-secondary/20 text-center">
+                <div className="inline-flex h-12 w-12 items-center justify-center border border-gold mb-4">
+                  <Check className="h-5 w-5 text-gold" strokeWidth={2.5} />
                 </div>
-                <div>
-                  <Label htmlFor="pd-email" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Email</Label>
-                  <Input id="pd-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={160} required className="mt-1 rounded-none border-border focus:border-gold" />
-                </div>
+                <div className="font-display text-2xl mb-2">Request received</div>
+                <p className="font-body text-sm text-foreground/75">
+                  Thank you, {name.split(" ")[0] || "friend"}. We'll be in touch at <span className="text-gold">{email}</span> soon.
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleOrder} className="border border-gold/30 p-6 mb-8 bg-secondary/20">
+                <div className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Request This Pack</div>
 
-              <div className="flex items-center justify-between mb-5">
-                <Label className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Quantity</Label>
-                <div className="inline-flex items-center border border-border">
-                  <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
-                    <Minus className="h-3.5 w-3.5" />
-                  </button>
-                  <span className="w-10 text-center font-display text-lg">{qty}</span>
-                  <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Increase" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors">
-                    <Plus className="h-3.5 w-3.5" />
-                  </button>
+                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="pd-name" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Name</Label>
+                    <Input id="pd-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} required disabled={submitting} className="mt-1 rounded-none border-border focus:border-gold" />
+                  </div>
+                  <div>
+                    <Label htmlFor="pd-email" className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Email</Label>
+                    <Input id="pd-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={160} required disabled={submitting} className="mt-1 rounded-none border-border focus:border-gold" />
+                  </div>
                 </div>
-              </div>
 
-              <Button type="submit" className="btn-shine w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold">
-                Send Request
-              </Button>
-              <p className="font-body text-[10px] text-muted-foreground mt-3 text-center">
-                Opens your email app with details prefilled.
-              </p>
-            </form>
+                <div className="flex items-center justify-between mb-5">
+                  <Label className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">Quantity</Label>
+                  <div className="inline-flex items-center border border-border">
+                    <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} disabled={submitting} aria-label="Decrease" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors disabled:opacity-50">
+                      <Minus className="h-3.5 w-3.5" />
+                    </button>
+                    <span className="w-10 text-center font-display text-lg">{qty}</span>
+                    <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} disabled={submitting} aria-label="Increase" className="h-9 w-9 inline-flex items-center justify-center hover:text-gold transition-colors disabled:opacity-50">
+                      <Plus className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+                <Button type="submit" disabled={submitting} className="btn-shine w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-12 shadow-gold">
+                  {submitting ? (
+                    <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending</>
+                  ) : "Send Request"}
+                </Button>
+                <p className="font-body text-[10px] text-muted-foreground mt-3 text-center">
+                  Your request is saved securely. We'll reply by email.
+                </p>
+              </form>
+            )}
 
             {/* FAQ */}
             <div className="mb-2">
