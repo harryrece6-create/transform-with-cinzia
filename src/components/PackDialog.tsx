@@ -9,7 +9,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
-import { Check, ChevronLeft, ChevronRight, Sparkles, Minus, Plus } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Check, ChevronLeft, ChevronRight, Sparkles, Minus, Plus, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
