@@ -65,15 +65,6 @@ export const PackDialog = ({
         <DialogTitle className="sr-only">{pack.name}</DialogTitle>
         <DialogDescription className="sr-only">{pack.tagline}</DialogDescription>
 
-        {/* close (custom — hides the default in DialogContent via styling) */}
-        <button
-          onClick={() => onOpenChange(false)}
-          aria-label="Close"
-          className="absolute top-4 right-4 z-50 h-9 w-9 inline-flex items-center justify-center bg-background/90 backdrop-blur border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
-        >
-          <X className="h-4 w-4" />
-        </button>
-
         <div className="grid md:grid-cols-2 max-h-[92vh] overflow-hidden">
           {/* MEDIA */}
           <div className="relative aspect-square md:aspect-auto md:h-[92vh] overflow-hidden">
