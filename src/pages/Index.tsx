@@ -101,6 +101,37 @@ const features = [
   { icon: Sparkles, title: "Expert Guidance", desc: "Everything you need to succeed — structure, nutrition, mindset." },
 ];
 
+const testimonials = [
+  {
+    quote: "I finally stopped starting over every Monday. The structure and the daily check-ins changed everything — I lost 12 kg and gained the confidence I'd been chasing for years.",
+    name: "Sarah V.",
+    role: "Mother of two · Brussels",
+    result: "−12 KG",
+    duration: "in 5 months",
+  },
+  {
+    quote: "Dalila is the real deal. No shortcuts, no nonsense — just a clear plan and someone who actually believes in you. I've never felt this strong, in my body and in my head.",
+    name: "Marko D.",
+    role: "Entrepreneur · Antwerp",
+    result: "−8% BODY FAT",
+    duration: "in 4 months",
+  },
+  {
+    quote: "What I love most is that this isn't a diet. It's a way of living that I can actually keep. Energy through the roof, sleep is better, and my morning routine is sacred now.",
+    name: "Lena B.",
+    role: "Designer · Ghent",
+    result: "+ DAILY ENERGY",
+    duration: "since day 30",
+  },
+];
+
+const stats = [
+  { value: "150+", label: "Clients Coached" },
+  { value: "5", label: "Years of Practice" },
+  { value: "98%", label: "Stay Consistent" },
+  { value: "1:1", label: "Personal Approach" },
+];
+
 
 const packs: Array<{
   name: string;
