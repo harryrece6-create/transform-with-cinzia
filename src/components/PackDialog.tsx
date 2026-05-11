@@ -91,7 +91,6 @@ export const PackDialog = ({
 
             <div className="flex items-baseline gap-3 mb-8">
               <span className="font-display text-5xl gold-text">{pack.price}</span>
-              <span className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground">incl. VAT</span>
             </div>
 
             <div className="gold-divider mb-8" />
@@ -133,9 +132,6 @@ export const PackDialog = ({
               </Button>
             </div>
 
-            <p className="font-body text-[10px] tracking-luxe uppercase text-muted-foreground mt-6 text-center">
-              Personal coaching · Certified · Belgium based
-            </p>
           </div>
         </div>
       </DialogContent>
