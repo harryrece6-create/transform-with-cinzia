@@ -7,7 +7,9 @@ import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning from "@/assets/pack-morning.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
-import packTotal from "@/assets/pack-total.jpg";
+import packTotal1 from "@/assets/pack-total-1.jpg";
+import packTotal2 from "@/assets/pack-total-2.jpg";
+import packTotal3 from "@/assets/pack-total-3.jpg";
 import { AuthDialog } from "@/components/AuthDialog";
 import { CookieBanner } from "@/components/CookieBanner";
 import { PackDialog, type Pack } from "@/components/PackDialog";
@@ -125,7 +127,12 @@ const packs: Array<{
     name: "Total Results Pack",
     tagline: "Your all-in combo for stronger results, faster.",
     price: "€156.80",
-    media: [{ type: "image", src: packTotal }],
+    media: [
+      { type: "image", src: packTotal1 },
+      { type: "image", src: packTotal2 },
+      { type: "image", src: packTotal3 },
+      { type: "video", src: "/videos/pack-total.mp4", poster: packTotal1 },
+    ],
     desc: "The perfect breakfast and hydration combo for people who want to go all-in. Formula 1, the herbal drink and aloe vera work together to support your metabolism and your results from day one.",
     perfect: "People who want the most complete start and the biggest push toward results.",
     items: ["Formula 1 breakfast", "Herbal drink for energy & focus", "Aloe vera for hydration & digestion"],
