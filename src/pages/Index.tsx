@@ -47,8 +47,11 @@ const PackMediaViewer = ({ media, alt }: { media: PackMedia[]; alt: string }) =>
           src={current.src}
           poster={current.poster}
           controls
+          autoPlay
+          muted
+          loop
           playsInline
-          preload="metadata"
+          preload="auto"
           className="w-full h-full object-cover"
         />
       ) : (

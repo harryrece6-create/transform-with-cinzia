@@ -56,7 +56,7 @@ const MediaCarousel = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
   return (
     <div className="relative w-full h-full bg-secondary/30">
       {cur.type === "video" ? (
-        <video key={cur.src} src={cur.src} poster={cur.poster} controls playsInline className="w-full h-full object-cover" />
+        <video key={cur.src} src={cur.src} poster={cur.poster} controls autoPlay muted loop playsInline className="w-full h-full object-cover" />
       ) : (
         <img key={cur.src} src={cur.src} alt={alt} className="w-full h-full object-cover" />
       )}
