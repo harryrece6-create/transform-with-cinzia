@@ -8,7 +8,7 @@ import storyImg from "@/assets/story-video.jpg";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
 import packMorning3 from "@/assets/pack-morning-3.jpg";
-import packHydration from "@/assets/pack-hydration.jpg";
+import packHydration from "@/assets/pack-hydration-new.jpg";
 import packTotal1 from "@/assets/pack-total-1.jpg";
 import packTotal2 from "@/assets/pack-total-2.jpg";
 import packTotal3 from "@/assets/pack-total-3.jpg";
