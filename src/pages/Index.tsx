@@ -5,7 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react";
 import heroImg from "@/assets/hero-coach.jpg";
 import storyImg from "@/assets/story-video.jpg";
-import packMorning from "@/assets/pack-morning.jpg";
+import packMorning1 from "@/assets/pack-morning-1.jpg";
+import packMorning2 from "@/assets/pack-morning-2.jpg";
+import packMorning3 from "@/assets/pack-morning-3.jpg";
 import packHydration from "@/assets/pack-hydration.jpg";
 import packTotal1 from "@/assets/pack-total-1.jpg";
 import packTotal2 from "@/assets/pack-total-2.jpg";
@@ -121,7 +123,11 @@ const packs: Array<{
     name: "Morning Kickstart Pack",
     tagline: "Your clean, easy morning reset starts here.",
     price: "€65.75",
-    media: [{ type: "image", src: packMorning }],
+    media: [
+      { type: "image", src: packMorning1 },
+      { type: "image", src: packMorning2 },
+      { type: "image", src: packMorning3 },
+    ],
     desc: "A strong day starts with a strong morning. This pack puts the focus on breakfast with Formula 1 so you feel more in control, more consistent, and ready to go.",
     perfect: "Busy people who want a simple healthy routine that is easy to stick to.",
     items: ["Formula 1 breakfast support", "A simple, healthy start to your day", "More structure and consistency"],
