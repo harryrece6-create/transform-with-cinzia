@@ -56,9 +56,9 @@ const MediaCarousel = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
   return (
     <div className="relative w-full h-full bg-secondary/30">
       {cur.type === "video" ? (
-        <video key={cur.src} src={cur.src} poster={cur.poster} controls autoPlay muted loop playsInline className="w-full h-full object-cover" />
+        <video key={cur.src} src={cur.src} poster={cur.poster} controls autoPlay muted loop playsInline className="w-full h-full object-contain md:object-cover" />
       ) : (
-        <img key={cur.src} src={cur.src} alt={alt} className="w-full h-full object-cover" />
+        <img key={cur.src} src={cur.src} alt={alt} className="w-full h-full object-contain md:object-cover" />
       )}
       {media.length > 1 && (
         <>
@@ -146,9 +146,9 @@ export const PackDialog = ({
         <DialogTitle className="sr-only">{pack.name}</DialogTitle>
         <DialogDescription className="sr-only">{pack.tagline}</DialogDescription>
 
-        <div className="grid md:grid-cols-2 max-h-[95vh] overflow-y-auto md:overflow-hidden">
+        <div className="grid max-h-[95vh] min-h-0 md:grid-cols-2 overflow-y-auto md:overflow-hidden">
           {/* MEDIA */}
-          <div className="relative aspect-square md:aspect-auto md:h-[95vh] overflow-hidden">
+          <div className="relative h-[34vh] max-h-64 min-h-48 md:h-[95vh] md:max-h-none overflow-hidden border-b border-border md:border-b-0">
             <MediaCarousel media={pack.media} alt={pack.name} />
             <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2 max-w-[calc(100%-3.5rem)]">
               <span className="px-2.5 py-1 bg-background/85 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</span>
@@ -161,7 +161,7 @@ export const PackDialog = ({
           </div>
 
           {/* DETAILS */}
-          <div className="md:overflow-y-auto p-5 sm:p-8 md:p-12 flex flex-col min-w-0">
+          <div className="relative z-10 bg-background md:overflow-y-auto p-5 sm:p-8 md:p-12 flex flex-col min-w-0">
             <div className="inline-flex items-center gap-3 mb-5">
               <span className="h-px w-8 bg-gold" />
               <span className="font-body text-[10px] tracking-luxe uppercase text-gold">The Pack</span>
