@@ -142,18 +142,18 @@ export const PackDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl p-0 gap-0 bg-background border border-gold/30 rounded-none overflow-hidden max-h-[92vh] sm:rounded-none">
+      <DialogContent className="max-w-5xl w-[calc(100vw-1rem)] sm:w-full p-0 gap-0 bg-background border border-gold/30 rounded-none overflow-hidden max-h-[95vh] sm:rounded-none">
         <DialogTitle className="sr-only">{pack.name}</DialogTitle>
         <DialogDescription className="sr-only">{pack.tagline}</DialogDescription>
 
-        <div className="grid md:grid-cols-2 max-h-[92vh] overflow-hidden">
+        <div className="grid md:grid-cols-2 max-h-[95vh] overflow-y-auto md:overflow-hidden">
           {/* MEDIA */}
-          <div className="relative aspect-square md:aspect-auto md:h-[92vh] overflow-hidden">
+          <div className="relative aspect-square md:aspect-auto md:h-[95vh] overflow-hidden">
             <MediaCarousel media={pack.media} alt={pack.name} />
-            <div className="absolute top-4 left-4 z-10 flex gap-2">
-              <span className="px-3 py-1 bg-background/85 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</span>
+            <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2 max-w-[calc(100%-3.5rem)]">
+              <span className="px-2.5 py-1 bg-background/85 backdrop-blur font-body text-[10px] tracking-luxe uppercase text-gold border border-gold/40">Ready</span>
               {pack.popular && (
-                <span className="px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground inline-flex items-center gap-1.5">
+                <span className="px-2.5 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground inline-flex items-center gap-1.5">
                   <Sparkles className="h-3 w-3" /> Popular
                 </span>
               )}
@@ -161,17 +161,17 @@ export const PackDialog = ({
           </div>
 
           {/* DETAILS */}
-          <div className="overflow-y-auto p-8 md:p-12 flex flex-col">
-            <div className="inline-flex items-center gap-3 mb-6">
+          <div className="md:overflow-y-auto p-5 sm:p-8 md:p-12 flex flex-col min-w-0">
+            <div className="inline-flex items-center gap-3 mb-5">
               <span className="h-px w-8 bg-gold" />
               <span className="font-body text-[10px] tracking-luxe uppercase text-gold">The Pack</span>
             </div>
 
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] mb-3">{pack.name}</h2>
-            <p className="font-script text-xl text-gold mb-6">{pack.tagline}</p>
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl leading-[1.1] mb-3 break-words">{pack.name}</h2>
+            <p className="font-script text-lg sm:text-xl text-gold mb-5">{pack.tagline}</p>
 
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="font-display text-5xl gold-text">{pack.price}</span>
+            <div className="flex items-baseline gap-3 mb-7">
+              <span className="font-display text-3xl sm:text-4xl md:text-5xl gold-text">{pack.price}</span>
             </div>
 
             <div className="gold-divider mb-8" />
