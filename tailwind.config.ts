@@ -61,7 +61,7 @@ export default {
       fontFamily: {
         display: ['"Cormorant Garamond"', 'serif'],
         body: ['Montserrat', 'sans-serif'],
-        script: ['"Dancing Script"', 'cursive'],
+        script: ['Allura', 'cursive'],
       },
       borderRadius: {
         lg: "var(--radius)",
