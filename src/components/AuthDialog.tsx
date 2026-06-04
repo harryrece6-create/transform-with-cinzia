@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, Eye, EyeOff, X, Globe, User, Check, ArrowRight } from "lucide-react";
-import heroImg from "@/assets/hero-coach.jpg";
+import heroImg from "@/assets/hero-coach-light.jpg";
+import heroImgDark from "@/assets/hero-coach-dark.jpg";
 
 type Lang = "en" | "de" | "sr";
 type Role = "client" | "coach";
@@ -117,7 +118,9 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
 
         {/* Header banner */}
         <div className="relative h-40 overflow-hidden border-b border-gold/30">
-          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40 block dark:hidden" />
+          <img src={heroImgDark} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40 hidden dark:block" />
+
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.25),transparent_70%)]" />
 

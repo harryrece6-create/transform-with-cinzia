@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react";
-import heroImg from "@/assets/hero-coach.jpg";
+import heroImg from "@/assets/hero-coach-light.jpg";
+import heroImgDark from "@/assets/hero-coach-dark.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
@@ -279,8 +280,16 @@ const Index = () => {
                 alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
-                className="relative w-full h-full object-cover shadow-soft"
+                className="relative w-full h-full object-cover shadow-soft block dark:hidden"
               />
+              <img
+                src={heroImgDark}
+                alt="Dalila Bahtijarevic, FitLife coach training in the gym"
+                width={1080}
+                height={1440}
+                className="relative w-full h-full object-cover shadow-soft hidden dark:block"
+              />
+
               <div className="absolute -bottom-6 -left-6 bg-background border border-gold/40 px-6 py-4">
                 <div className="font-script text-xl text-gold leading-none">Prove yourself</div>
                 <div className="font-display italic text-lg leading-tight">right.</div>
