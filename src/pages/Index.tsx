@@ -280,8 +280,16 @@ const Index = () => {
                 alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
-                className="relative w-full h-full object-cover shadow-soft"
+                className="relative w-full h-full object-cover shadow-soft block dark:hidden"
               />
+              <img
+                src={heroImgDark}
+                alt="Dalila Bahtijarevic, FitLife coach training in the gym"
+                width={1080}
+                height={1440}
+                className="relative w-full h-full object-cover shadow-soft hidden dark:block"
+              />
+
               <div className="absolute -bottom-6 -left-6 bg-background border border-gold/40 px-6 py-4">
                 <div className="font-script text-xl text-gold leading-none">Prove yourself</div>
                 <div className="font-display italic text-lg leading-tight">right.</div>
