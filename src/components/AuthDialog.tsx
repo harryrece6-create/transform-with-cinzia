@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, Eye, EyeOff, X, Globe, User, Check, ArrowRight } from "lucide-react";
-import heroImg from "@/assets/hero-coach.jpg";
+import heroImg from "@/assets/hero-coach-light.jpg";
+import heroImgDark from "@/assets/hero-coach-dark.jpg";
 
 type Lang = "en" | "de" | "sr";
 type Role = "client" | "coach";
