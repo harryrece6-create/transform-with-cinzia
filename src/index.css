@@ -95,16 +95,16 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
-    letter-spacing: -0.015em;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
   }
 }
 
 @layer utilities {
-  .font-display { font-family: 'Playfair Display', serif; }
+  .font-display { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
   .font-body { font-family: 'Montserrat', sans-serif; }
-  .font-script { font-family: 'Dancing Script', cursive; }
+  .font-script { font-family: 'Allura', cursive; font-weight: 400; }
 
   .text-gold { color: hsl(var(--gold)); }
   .bg-gold { background-color: hsl(var(--gold)); }
