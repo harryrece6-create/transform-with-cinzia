@@ -59,7 +59,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
+        display: ['"Cormorant Garamond"', 'serif'],
         body: ['Montserrat', 'sans-serif'],
         script: ['"Dancing Script"', 'cursive'],
       },
