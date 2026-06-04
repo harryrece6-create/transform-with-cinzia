@@ -118,7 +118,9 @@ export const AuthDialog = ({ open, onOpenChange, defaultMode = "register", lang,
 
         {/* Header banner */}
         <div className="relative h-40 overflow-hidden border-b border-gold/30">
-          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40 block dark:hidden" />
+          <img src={heroImgDark} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40 hidden dark:block" />
+
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.25),transparent_70%)]" />
 
