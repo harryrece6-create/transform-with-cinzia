@@ -290,10 +290,10 @@ const Index = () => {
             src={heroPoster.url}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-110 blur-2xl opacity-80"
+            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-105 blur-sm opacity-100"
           />
-          <div className="absolute inset-0 bg-background/55" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background/80" />
+          <div className="absolute inset-0 bg-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/20 to-background/10" />
         </div>
 
         <div className="container mx-auto relative z-10 min-h-[calc(100vh-7rem)] flex flex-col items-center justify-center py-20 text-center">
