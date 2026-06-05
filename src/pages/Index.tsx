@@ -241,23 +241,23 @@ const Index = () => {
 
       {/* HERO - full bleed image with overlay */}
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src={heroPoster.url}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-center scale-110 blur-2xl opacity-60"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-105 blur-lg opacity-80"
           />
           <img
             src={heroImg}
             alt="Dalila Bahtijarevic, FitLife coach training in the gym"
             className="absolute inset-0 w-full h-full object-cover object-center opacity-0 block dark:hidden"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/45 to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-background/10 to-background/20" />
         </div>
 
-        <div className="container mx-auto relative min-h-[calc(100vh-7rem)] flex flex-col justify-center py-20">
+        <div className="container mx-auto relative z-10 min-h-[calc(100vh-7rem)] flex flex-col justify-center py-20">
           <div className="max-w-2xl animate-fade-up">
             <SectionLabel>Meet Your Coach</SectionLabel>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
