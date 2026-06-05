@@ -239,32 +239,37 @@ const Index = () => {
         </div>
       </header>
 
-      {/* HERO - Nolla-inspired centered prompt over full-bleed portrait */}
+      {/* HERO - original slogans, Nolla-style prompt + pills below */}
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src={heroPoster.url}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-105"
+            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-110 blur-2xl opacity-80"
           />
-          {/* Cinematic darkening so the centered prompt reads clearly, like Nolla */}
           <div className="absolute inset-0 bg-background/55" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background/80" />
         </div>
 
         <div className="container mx-auto relative z-10 min-h-[calc(100vh-7rem)] flex flex-col items-center justify-center py-20 text-center">
           <div className="w-full max-w-2xl animate-fade-up">
-            <h1 className="font-display text-5xl md:text-7xl leading-[1.0] mb-10 text-foreground drop-shadow-[0_2px_20px_rgba(0,0,0,0.45)]">
-              How do you want <br />
-              to <span className="italic font-normal gold-text">feel?</span>
+            <SectionLabel>Meet Your Coach</SectionLabel>
+            <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
+              Prove <br />
+              <span className="italic font-normal">Yourself</span> <span className="gold-text">Right.</span>
             </h1>
+            <div className="font-script text-3xl text-gold mb-6">Dalila Bahtijarevic</div>
+            <p className="font-body text-lg text-foreground/80 max-w-lg mx-auto mb-10 leading-relaxed">
+              Join a community dedicated to growth, discipline, and results.
+              Your transformation starts with a single decision.
+            </p>
 
-            {/* Prompt-style input card */}
+            {/* Nolla-style prompt card */}
             <div className="mx-auto w-full max-w-xl rounded-3xl bg-background/85 backdrop-blur-xl border border-border shadow-soft p-4 text-left">
               <a href="#packs" className="block">
                 <div className="font-body text-sm text-muted-foreground px-3 pt-2 pb-6">
-                  Tell me your goal — more energy, leaner body, better mornings…
+                  Ready when you are — pick a pack, meet your coach, start today.
                 </div>
               </a>
               <div className="flex items-center justify-between gap-2 px-1">
@@ -273,7 +278,7 @@ const Index = () => {
                   onClick={() => { const el = document.getElementById("packs"); el?.scrollIntoView({ behavior: "smooth" }); }}
                   className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-xs"
                 >
-                  <Camera className="h-3.5 w-3.5" /> Browse Packs
+                  <ShoppingBag className="h-3.5 w-3.5" /> Browse Packs
                 </button>
                 <div className="flex items-center gap-2">
                   <button
@@ -297,7 +302,7 @@ const Index = () => {
 
             {/* Pill action stack — Nolla style */}
             <div className="mt-8 flex flex-col items-center gap-3">
-              <a href="#coach-bio" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
+              <a href="#why" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
                 <Users className="h-4 w-4 text-gold" /> Meet your coach
               </a>
               <a href="#why" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
@@ -309,7 +314,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Trust badge bottom — like Nolla's "HIPAA · Private" */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
             <ShieldCheck className="h-3 w-3 text-gold" /> Certified Coach · Real Results
           </div>
