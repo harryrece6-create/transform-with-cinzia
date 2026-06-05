@@ -309,39 +309,13 @@ const Index = () => {
               Your transformation starts with a single decision.
             </p>
 
-            {/* Nolla-style prompt card */}
-            <div className="mx-auto w-full max-w-xl rounded-3xl bg-background/85 backdrop-blur-xl border border-border shadow-soft p-4 text-left">
-              <a href="#packs" className="block">
-                <div className="font-body text-sm text-muted-foreground px-3 pt-2 pb-6">
-                  Ready when you are — pick a pack, meet your coach, start today.
-                </div>
-              </a>
-              <div className="flex items-center justify-between gap-2 px-1">
-                <button
-                  type="button"
-                  onClick={() => { const el = document.getElementById("packs"); el?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-xs"
-                >
-                  <ShoppingBag className="h-3.5 w-3.5" /> Browse Packs
-                </button>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    aria-label="Voice"
-                    className="h-9 w-9 inline-flex items-center justify-center rounded-full border border-border hover:border-gold/60 hover:text-gold transition-colors"
-                  >
-                    <Mic className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Start"
-                    onClick={() => openAuth("register")}
-                    className="h-9 w-9 inline-flex items-center justify-center rounded-full bg-gold text-primary-foreground hover:bg-gold/90 shadow-gold transition-colors"
-                  >
-                    <ArrowUp className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-4 justify-center mb-2">
+              <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-full font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
+                Create Account
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-full font-body text-xs tracking-luxe uppercase h-14 px-8 bg-background/40 backdrop-blur">
+                <a href="#packs">Choose Your Pack <ArrowRight className="ml-2 h-3 w-3" /></a>
+              </Button>
             </div>
 
             {/* Pill action stack — Nolla style */}
