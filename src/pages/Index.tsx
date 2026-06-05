@@ -246,7 +246,7 @@ const Index = () => {
             src={heroPoster.url}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-center scale-105 blur-lg opacity-80"
+            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-100 blur-md opacity-85"
           />
           <img
             src={heroImg}
