@@ -6,6 +6,7 @@ import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, S
 import heroImg from "@/assets/hero-coach-light.jpg";
 import heroImgDark from "@/assets/hero-theme-gold.jpg";
 import storyImg from "@/assets/story-video.jpg";
+import heroPoster from "@/assets/hero-dalila-poster.jpg.asset.json";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
 import packMorning3 from "@/assets/pack-morning-3.jpg";
@@ -242,17 +243,18 @@ const Index = () => {
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img
-            src={heroImg}
-            alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-            className="absolute inset-0 w-full h-full object-cover object-center block dark:hidden"
+            src={heroPoster.url}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-110 blur-2xl opacity-60"
           />
           <img
-            src={heroImgDark}
+            src={heroImg}
             alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-            className="absolute inset-0 w-full h-full object-cover object-center hidden dark:block"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-0 block dark:hidden"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-background/40" />
         </div>
 
         <div className="container mx-auto relative min-h-[calc(100vh-7rem)] flex flex-col justify-center py-20">
@@ -277,16 +279,6 @@ const Index = () => {
             </div>
           </div>
 
-          <a href="#why" className="hidden md:block absolute bottom-10 right-6 lg:right-10 group">
-            <div className="relative w-64 aspect-video overflow-hidden rounded-xl border border-gold/40 shadow-gold cursor-pointer">
-              <img src={storyImg} alt="Watch story" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div className="h-12 w-12 rounded-full bg-gold flex items-center justify-center shadow-gold">
-                  <Play className="h-5 w-5 text-primary-foreground ml-0.5" fill="currentColor" />
-                </div>
-              </div>
-            </div>
-          </a>
         </div>
       </section>
 
