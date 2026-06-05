@@ -392,6 +392,15 @@ const Index = () => {
               </Card>
             ))}
           </div>
+
+          <div className="mt-16" data-reveal>
+            <PromptCard
+              placeholder="Curious what fits you? Ask about coaching, results, or a custom plan."
+              ctaLabel="See Packs"
+              onCta={() => { document.getElementById("packs")?.scrollIntoView({ behavior: "smooth" }); }}
+              onSubmit={() => openAuth("register")}
+            />
+          </div>
         </div>
       </section>
 
