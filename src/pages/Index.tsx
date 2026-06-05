@@ -330,7 +330,7 @@ const Index = () => {
 
       {/* QUOTE STRIP */}
       <section className="py-10 border-y border-border bg-secondary/40">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center" data-reveal data-reveal="scale">
           <p className="font-body text-xs md:text-sm tracking-luxe uppercase text-muted-foreground">
             Strong Body. <span className="text-foreground">Strong Mind.</span> <span className="text-gold">Better Life.</span>
           </p>
