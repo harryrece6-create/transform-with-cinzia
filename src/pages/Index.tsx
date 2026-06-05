@@ -37,6 +37,50 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+const PromptCard = ({
+  placeholder,
+  ctaLabel,
+  ctaIcon: CtaIcon = ShoppingBag,
+  onCta,
+  onSubmit,
+}: {
+  placeholder: string;
+  ctaLabel: string;
+  ctaIcon?: typeof ShoppingBag;
+  onCta: () => void;
+  onSubmit: () => void;
+}) => (
+  <div className="mx-auto w-full max-w-xl rounded-3xl bg-background/85 backdrop-blur-xl border border-border shadow-soft p-4 text-left">
+    <div className="font-body text-sm text-muted-foreground px-3 pt-2 pb-6">{placeholder}</div>
+    <div className="flex items-center justify-between gap-2 px-1">
+      <button
+        type="button"
+        onClick={onCta}
+        className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-xs"
+      >
+        <CtaIcon className="h-3.5 w-3.5" /> {ctaLabel}
+      </button>
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          aria-label="Voice"
+          className="h-9 w-9 inline-flex items-center justify-center rounded-full border border-border hover:border-gold/60 hover:text-gold transition-colors"
+        >
+          <Mic className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          aria-label="Start"
+          onClick={onSubmit}
+          className="h-9 w-9 inline-flex items-center justify-center rounded-full bg-gold text-primary-foreground hover:bg-gold/90 shadow-gold transition-colors"
+        >
+          <ArrowUp className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 type PackMedia = { type: "image" | "video"; src: string; poster?: string };
 
 const PackMediaViewer = ({ media, alt }: { media: PackMedia[]; alt: string }) => {
