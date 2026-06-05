@@ -462,7 +462,15 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-10" />
+          <div className="mt-16" data-reveal>
+            <PromptCard
+              placeholder="Not sure which pack? Tell me your goal and I'll point you the right way."
+              ctaLabel="Create Account"
+              ctaIcon={Sparkles}
+              onCta={() => openAuth("register")}
+              onSubmit={() => openAuth("register")}
+            />
+          </div>
         </div>
       </section>
 
