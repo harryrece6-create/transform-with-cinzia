@@ -159,11 +159,20 @@
   transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+[data-reveal="left"] { transform: translateX(-40px); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal="scale"] { transform: scale(0.92); }
+[data-reveal="blur"] { filter: blur(10px); transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s ease-out; }
+[data-reveal="blur"].is-visible { filter: blur(0); }
 [data-reveal-delay="1"] { transition-delay: 0.1s; }
 [data-reveal-delay="2"] { transition-delay: 0.22s; }
 [data-reveal-delay="3"] { transition-delay: 0.34s; }
 [data-reveal-delay="4"] { transition-delay: 0.46s; }
+
+/* Subtle parallax driven via --scroll-y custom prop (set by hook) */
+.parallax-slow { transform: translate3d(0, calc(var(--scroll-y, 0) * 0.15), 0); }
+.parallax-fast { transform: translate3d(0, calc(var(--scroll-y, 0) * 0.35), 0); }
 
 .hover-lift {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;

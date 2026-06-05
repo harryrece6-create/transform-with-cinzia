@@ -18,6 +18,7 @@ import { AuthDialog } from "@/components/AuthDialog";
 import { CookieBanner } from "@/components/CookieBanner";
 import { PackDialog, type Pack } from "@/components/PackDialog";
 import { useReveal } from "@/hooks/use-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 
 type Lang = "en" | "de" | "sr";
 
@@ -231,6 +232,7 @@ const Index = () => {
   };
 
   useReveal();
+  useParallax();
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -285,12 +287,12 @@ const Index = () => {
 
       {/* HERO - original slogans, Nolla-style prompt + pills below */}
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none" data-parallax>
           <img
             src={heroPoster.url}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-105 blur-md opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-110 blur-md opacity-100 parallax-slow"
           />
           <div className="absolute inset-0 bg-background/30" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/20 to-background/10" />
@@ -328,7 +330,7 @@ const Index = () => {
 
       {/* QUOTE STRIP */}
       <section className="py-10 border-y border-border bg-secondary/40">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center" data-reveal="scale">
           <p className="font-body text-xs md:text-sm tracking-luxe uppercase text-muted-foreground">
             Strong Body. <span className="text-foreground">Strong Mind.</span> <span className="text-gold">Better Life.</span>
           </p>
