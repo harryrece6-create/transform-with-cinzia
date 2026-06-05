@@ -472,7 +472,7 @@ const Index = () => {
             <div>
               <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mb-4">Connect</h4>
               <ul className="space-y-2 font-body text-sm">
-                <li><a href="https://www.instagram.com/dalilafitlife?igsh=MXRseWw1b3h6Z3A5Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">Instagram</a></li>
+                <li><a href="https://www.instagram.com/dalilafitlife" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-gold transition-colors">Instagram</a></li>
                 <li><a href="mailto:hello@dalila.coach" className="text-foreground/80 hover:text-gold transition-colors">Email</a></li>
               </ul>
               <h4 className="font-body text-[10px] tracking-luxe uppercase text-gold mt-6 mb-3">Legal</h4>
