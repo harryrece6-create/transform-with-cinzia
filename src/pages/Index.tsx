@@ -6,6 +6,7 @@ import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, S
 import heroImg from "@/assets/hero-coach-light.jpg";
 import heroImgDark from "@/assets/hero-theme-gold.jpg";
 import storyImg from "@/assets/story-video.jpg";
+import heroPoster from "@/assets/hero-dalila-poster.jpg.asset.json";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
 import packMorning3 from "@/assets/pack-morning-3.jpg";
