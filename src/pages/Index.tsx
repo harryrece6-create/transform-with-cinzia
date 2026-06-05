@@ -464,38 +464,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA - Nolla cinematic theme */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.15),transparent_60%)]" />
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img src={heroPoster.url} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-[center_20%] scale-110 blur-2xl opacity-75" />
+          <div className="absolute inset-0 bg-background/65" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.18),transparent_60%)]" />
         </div>
-        <div className="container mx-auto text-center max-w-3xl" data-reveal>
+        <div className="container mx-auto relative z-10 text-center max-w-3xl" data-reveal>
           <SectionLabel>Ready to Transform?</SectionLabel>
-          <h2 className="font-display text-6xl md:text-7xl mb-8">
+          <h2 className="font-display text-6xl md:text-7xl mb-8 drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
             Start Your <br /><em className="font-normal gold-text">Journey Today</em>
           </h2>
           <p className="font-script text-2xl text-gold mb-10">You vs. You.</p>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-10">
+          <p className="font-body text-foreground/80 max-w-xl mx-auto mb-10">
             One decision is all it takes. Create your account and step into the version of you
             that you've been waiting for.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-full font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Create Account
             </Button>
-            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
+            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/40 hover:border-gold hover:text-gold rounded-full font-body text-xs tracking-luxe uppercase h-14 px-10 bg-background/40 backdrop-blur">
               Sign In
             </Button>
-          </div>
-
-          <div className="mt-12">
-            <PromptCard
-              placeholder="Type yes — and we'll start your transformation together."
-              ctaLabel="Sign In"
-              ctaIcon={Users}
-              onCta={() => openAuth("login")}
-              onSubmit={() => openAuth("register")}
-            />
           </div>
         </div>
       </section>
