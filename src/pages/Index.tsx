@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, Menu, Globe, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react";
 import heroImg from "@/assets/hero-coach-light.jpg";
-import heroImgDark from "@/assets/hero-coach-dark.jpg";
+import heroImgDark from "@/assets/hero-theme-gold.jpg";
 import storyImg from "@/assets/story-video.jpg";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
@@ -272,29 +272,27 @@ const Index = () => {
           </div>
 
           <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[3/4] max-w-sm mx-auto opacity-60 hover:opacity-80 transition-opacity duration-700">
-              <div className="absolute -inset-3 border border-gold/20" />
-              <div className="absolute -inset-1 bg-gradient-to-br from-gold/10 to-transparent" />
+            <div className="relative aspect-[3/4] max-w-md mx-auto">
+              <div className="absolute -inset-4 border border-gold/40" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 to-transparent" />
               <img
                 src={heroImg}
                 alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
-                className="relative w-full h-full object-cover shadow-soft block dark:hidden grayscale-[30%]"
+                className="relative w-full h-full object-cover shadow-soft block dark:hidden"
               />
               <img
                 src={heroImgDark}
                 alt="Dalila Bahtijarevic, FitLife coach training in the gym"
                 width={1080}
                 height={1440}
-                className="relative w-full h-full object-cover shadow-soft hidden dark:block grayscale-[30%]"
+                className="relative w-full h-full object-cover shadow-gold hidden dark:block"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent pointer-events-none" />
-
-              <div className="absolute -bottom-4 -left-4 bg-background/80 backdrop-blur-sm border border-gold/30 px-5 py-3">
-                <div className="font-script text-lg text-gold leading-none">Prove yourself</div>
-                <div className="font-display italic text-base leading-tight">right.</div>
+              <div className="absolute -bottom-6 -left-6 bg-background border border-gold/40 px-6 py-4 shadow-soft">
+                <div className="font-script text-xl text-gold leading-none">Prove yourself</div>
+                <div className="font-display italic text-lg leading-tight">right.</div>
               </div>
             </div>
           </div>
