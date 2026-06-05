@@ -318,18 +318,6 @@ const Index = () => {
               </Button>
             </div>
 
-            {/* Pill action stack — Nolla style */}
-            <div className="mt-8 flex flex-col items-center gap-3">
-              <a href="#why" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
-                <Users className="h-4 w-4 text-gold" /> Meet your coach
-              </a>
-              <a href="#why" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
-                <Search className="h-4 w-4 text-gold" /> Why FitLife works
-              </a>
-              <a href="#packs" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/70 backdrop-blur border border-border hover:border-gold/60 hover:text-gold transition-colors font-body text-sm">
-                <ShoppingBag className="h-4 w-4 text-gold" /> Get your pack
-              </a>
-            </div>
           </div>
 
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 font-body text-[10px] tracking-luxe uppercase text-muted-foreground">
@@ -347,22 +335,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* WHY CHOOSE US - Nolla cinematic theme */}
-      <section id="why" className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img src={heroPoster.url} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-[center_30%] scale-110 blur-2xl opacity-70" />
-          <div className="absolute inset-0 bg-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background" />
-        </div>
-        <div className="container mx-auto relative z-10">
+      {/* WHY CHOOSE US */}
+      <section id="why" className="py-32 bg-secondary/30 relative overflow-hidden">
+        <div className="container mx-auto">
           <div className="text-center mb-20" data-reveal>
             <SectionLabel>Why Choose Us</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
+            <h2 className="font-display text-5xl md:text-6xl">Everything you need <br /><em className="font-normal gold-text">to succeed</em></h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <Card key={i} data-reveal data-reveal-delay={String(i + 1)} className="hover-lift group bg-background/40 backdrop-blur-xl border-border/60 hover:border-gold/60 hover:shadow-soft transition-all duration-500 p-8 rounded-3xl relative">
+              <Card key={i} data-reveal data-reveal-delay={String(i + 1)} className="hover-lift group bg-background/60 border-border hover:border-gold/60 hover:shadow-soft transition-all duration-500 p-8 rounded-2xl relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold transition-all duration-500" />
                 <div className="font-display text-5xl gold-text/30 mb-6 opacity-30">0{i + 1}</div>
                 <f.icon className="h-7 w-7 text-gold mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.2} />
@@ -374,21 +357,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* PACKS - Nolla cinematic theme */}
-      <section id="packs" className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img src={heroPoster.url} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-[center_60%] scale-110 blur-2xl opacity-60" />
-          <div className="absolute inset-0 bg-background/75" />
-        </div>
-        <div className="container mx-auto relative z-10">
+      {/* PACKS */}
+      <section id="packs" className="py-32 bg-secondary/30">
+        <div className="container mx-auto">
           <div className="text-center mb-20" data-reveal>
             <SectionLabel>Available Packages</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]">Choose <em className="font-normal gold-text">Your Pack</em></h2>
+            <h2 className="font-display text-5xl md:text-6xl">Choose <em className="font-normal gold-text">Your Pack</em></h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {packs.map((p, i) => (
-              <Card key={p.name} data-reveal data-reveal-delay={String(i + 1)} className={`hover-lift relative bg-background/50 backdrop-blur-xl border rounded-3xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border/60 hover:border-gold/40 hover:shadow-soft"} transition-all duration-500`}>
+              <Card key={p.name} data-reveal data-reveal-delay={String(i + 1)} className={`hover-lift relative bg-background border rounded-2xl overflow-hidden flex flex-col group ${p.popular ? "border-gold shadow-gold lg:-translate-y-4" : "border-border hover:border-gold/40 hover:shadow-soft"} transition-all duration-500`}>
                 {p.popular && (
                   <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gold font-body text-[10px] tracking-luxe uppercase text-primary-foreground">Popular</div>
                 )}
@@ -438,28 +417,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA - Nolla cinematic theme */}
+      {/* CTA */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img src={heroPoster.url} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-[center_20%] scale-110 blur-2xl opacity-75" />
-          <div className="absolute inset-0 bg-background/65" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.18),transparent_60%)]" />
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(42_52%_52%/0.15),transparent_60%)]" />
         </div>
-        <div className="container mx-auto relative z-10 text-center max-w-3xl" data-reveal>
+        <div className="container mx-auto text-center max-w-3xl" data-reveal>
           <SectionLabel>Ready to Transform?</SectionLabel>
-          <h2 className="font-display text-6xl md:text-7xl mb-8 drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
+          <h2 className="font-display text-6xl md:text-7xl mb-8">
             Start Your <br /><em className="font-normal gold-text">Journey Today</em>
           </h2>
           <p className="font-script text-2xl text-gold mb-10">You vs. You.</p>
-          <p className="font-body text-foreground/80 max-w-xl mx-auto mb-10">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-10">
             One decision is all it takes. Create your account and step into the version of you
             that you've been waiting for.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-full font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
+            <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 shadow-gold">
               Create Account
             </Button>
-            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/40 hover:border-gold hover:text-gold rounded-full font-body text-xs tracking-luxe uppercase h-14 px-10 bg-background/40 backdrop-blur">
+            <Button size="lg" onClick={() => openAuth("login")} variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-10 bg-transparent">
               Sign In
             </Button>
           </div>
