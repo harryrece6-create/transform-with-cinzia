@@ -238,64 +238,55 @@ const Index = () => {
         </div>
       </header>
 
-      {/* HERO */}
-      <section id="coach" className="relative min-h-screen pt-32 pb-20 overflow-hidden">
+      {/* HERO - full bleed image with overlay */}
+      <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream to-sand" />
-          <div className="absolute -left-32 top-40 h-96 w-96 blob bg-gold/15 animate-float" />
-          <div className="absolute right-10 bottom-20 h-72 w-72 blob bg-clay/30 animate-float" style={{ animationDelay: '2s' }} />
-          <div className="absolute right-0 top-0 w-1/2 h-full opacity-20">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(42_52%_52%/0.4),transparent_60%)]" />
-          </div>
+          <img
+            src={heroImg}
+            alt="Dalila Bahtijarevic, FitLife coach training in the gym"
+            className="absolute inset-0 w-full h-full object-cover object-center block dark:hidden"
+          />
+          <img
+            src={heroImgDark}
+            alt="Dalila Bahtijarevic, FitLife coach training in the gym"
+            className="absolute inset-0 w-full h-full object-cover object-center hidden dark:block"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20" />
         </div>
 
-        <div className="container mx-auto grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 animate-fade-up">
+        <div className="container mx-auto relative min-h-[calc(100vh-7rem)] flex flex-col justify-center py-20">
+          <div className="max-w-2xl animate-fade-up">
             <SectionLabel>Meet Your Coach</SectionLabel>
-            <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-8">
+            <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
               Prove <br />
               <span className="italic font-normal">Yourself</span> <span className="gold-text">Right.</span>
             </h1>
-            <div className="font-script text-3xl text-gold mb-8">Dalila Bahtijarevic</div>
-            <p className="font-body text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed">
+            <div className="font-script text-3xl text-gold mb-6">Dalila Bahtijarevic</div>
+            <p className="font-body text-lg text-foreground/80 max-w-lg mb-10 leading-relaxed">
               Join a community dedicated to growth, discipline, and results.
               Your transformation starts with a single decision.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
+              <Button size="lg" onClick={() => openAuth("register")} className="btn-shine bg-gold text-primary-foreground hover:bg-gold/90 rounded-full font-body text-xs tracking-luxe uppercase h-14 px-8 shadow-gold">
                 Create Account
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-2xl font-body text-xs tracking-luxe uppercase h-14 px-8 bg-transparent">
+              <Button asChild size="lg" variant="outline" className="border-foreground/30 hover:border-gold hover:text-gold rounded-full font-body text-xs tracking-luxe uppercase h-14 px-8 bg-background/40 backdrop-blur">
                 <a href="#packs">Choose Your Pack <ArrowRight className="ml-2 h-3 w-3" /></a>
               </Button>
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[3/4] max-w-md mx-auto">
-              <div className="absolute -inset-4 border border-gold/40" />
-              <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 to-transparent" />
-              <img
-                src={heroImg}
-                alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-                width={1080}
-                height={1440}
-                className="relative w-full h-full object-cover shadow-soft block dark:hidden"
-              />
-              <img
-                src={heroImgDark}
-                alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-                width={1080}
-                height={1440}
-                className="relative w-full h-full object-cover shadow-gold hidden dark:block"
-              />
-
-              <div className="absolute -bottom-6 -left-6 bg-background border border-gold/40 px-6 py-4 shadow-soft">
-                <div className="font-script text-xl text-gold leading-none">Prove yourself</div>
-                <div className="font-display italic text-lg leading-tight">right.</div>
+          <a href="#why" className="hidden md:block absolute bottom-10 right-6 lg:right-10 group">
+            <div className="relative w-64 aspect-video overflow-hidden rounded-xl border border-gold/40 shadow-gold cursor-pointer">
+              <img src={storyImg} alt="Watch story" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div className="h-12 w-12 rounded-full bg-gold flex items-center justify-center shadow-gold">
+                  <Play className="h-5 w-5 text-primary-foreground ml-0.5" fill="currentColor" />
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
