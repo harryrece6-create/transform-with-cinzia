@@ -243,17 +243,18 @@ const Index = () => {
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img
-            src={heroImg}
-            alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-            className="absolute inset-0 w-full h-full object-cover object-center block dark:hidden"
+            src={heroPoster.url}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-110 blur-2xl opacity-60"
           />
           <img
-            src={heroImgDark}
+            src={heroImg}
             alt="Dalila Bahtijarevic, FitLife coach training in the gym"
-            className="absolute inset-0 w-full h-full object-cover object-center hidden dark:block"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-0 block dark:hidden"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-background/40" />
         </div>
 
         <div className="container mx-auto relative min-h-[calc(100vh-7rem)] flex flex-col justify-center py-20">
