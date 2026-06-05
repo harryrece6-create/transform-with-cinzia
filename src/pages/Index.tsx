@@ -279,16 +279,6 @@ const Index = () => {
             </div>
           </div>
 
-          <a href="#why" className="hidden md:block absolute bottom-10 right-6 lg:right-10 group">
-            <div className="relative w-64 aspect-video overflow-hidden rounded-xl border border-gold/40 shadow-gold cursor-pointer">
-              <img src={storyImg} alt="Watch story" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div className="h-12 w-12 rounded-full bg-gold flex items-center justify-center shadow-gold">
-                  <Play className="h-5 w-5 text-primary-foreground ml-0.5" fill="currentColor" />
-                </div>
-              </div>
-            </div>
-          </a>
         </div>
       </section>
 
