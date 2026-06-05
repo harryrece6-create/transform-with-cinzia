@@ -497,6 +497,16 @@ const Index = () => {
               Sign In
             </Button>
           </div>
+
+          <div className="mt-12">
+            <PromptCard
+              placeholder="Type yes — and we'll start your transformation together."
+              ctaLabel="Sign In"
+              ctaIcon={Users}
+              onCta={() => openAuth("login")}
+              onSubmit={() => openAuth("register")}
+            />
+          </div>
         </div>
       </section>
 
