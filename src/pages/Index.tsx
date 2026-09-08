@@ -6,7 +6,7 @@ import { Check, Play, Users, Trophy, Heart, Sparkles, ArrowRight, ArrowUp, Mic, 
 import heroImg from "@/assets/hero-coach-light.jpg";
 import heroImgDark from "@/assets/hero-theme-gold.jpg";
 import storyImg from "@/assets/story-video.jpg";
-import heroPoster from "@/assets/hero-dalila-poster.jpg.asset.json";
+import heroPoster from "@/assets/hero-poster.jpg";
 import packMorning1 from "@/assets/pack-morning-1.jpg";
 import packMorning2 from "@/assets/pack-morning-2.jpg";
 import packMorning3 from "@/assets/pack-morning-3.jpg";
@@ -289,7 +289,7 @@ const Index = () => {
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none" data-parallax>
           <img
-            src={heroPoster.url}
+            src={heroPoster}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-110 blur-md opacity-100 parallax-slow"
