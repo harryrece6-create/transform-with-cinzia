@@ -289,7 +289,7 @@ const Index = () => {
       <section id="coach" className="relative min-h-screen pt-28 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none" data-parallax>
           <img
-            src={heroPoster.url}
+            src={heroPoster}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover object-[center_24%] scale-110 blur-md opacity-100 parallax-slow"
